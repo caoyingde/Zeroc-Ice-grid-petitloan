@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.LoanPlanInfoDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.petitcredit.base.pushmsg.model.LoanPlanInfo"
+		id="tableMapToModel">
+		<id column="id" property="ID" />
+		<result column="repayment_plan_uuid" property="REPAYMENT_PLAN_UUID" />
+		<result column="batch_no" property="BATCH_NO" />
+		<result column="data_type" property="DATA_TYPE" />
+		<result column="record_count" property="RECORD_COUNT" />
+		<result column="payplan_info" property="PAYPLAN_INFO" />
+		<result column="report_type" property="REPORT_TYPE" />
+		<result column="org_code" property="ORG_CODE" />
+		<result column="contract_no" property="CONTRACT_NO" />
+		<result column="due_bill_no" property="DUE_BILL_NO" />
+		<result column="counter" property="COUNTER" />
+		<result column="repay_date" property="REPAY_DATE" />
+		<result column="repay_pri_amt" property="REPAY_PRI_AMT" />
+		<result column="repay_int_amt" property="REPAY_INT_AMT" />
+		<result column="start_date" property="START_DATE" />
+		<result column="end_date" property="END_DATE" />
+		<result column="reserved_field1" property="RESERVED_FIELD1" />
+		<result column="reserved_field2" property="RESERVED_FIELD2" />
+		<result column="reserved_field3" property="RESERVED_FIELD3" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,repayment_plan_uuid,batch_no,data_type,record_count,payplan_info,report_type,org_code,contract_no,due_bill_no,counter,repay_date,repay_pri_amt,repay_int_amt,start_date,end_date,reserved_field1,reserved_field2,reserved_field3,
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{ID},#{REPAYMENT_PLAN_UUID},#{BATCH_NO},#{DATA_TYPE},#{RECORD_COUNT},#{PAYPLAN_INFO},#{REPORT_TYPE},#{ORG_CODE},#{CONTRACT_NO},#{DUE_BILL_NO},#{COUNTER},#{REPAY_DATE},#{REPAY_PRI_AMT},#{REPAY_INT_AMT},#{START_DATE},#{END_DATE},#{RESERVED_FIELD1},#{RESERVED_FIELD2},#{RESERVED_FIELD3}
+		</trim>
+	</sql>
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="REPAYMENT_PLAN_UUID != null and REPAYMENT_PLAN_UUID != '' ">
+				repayment_plan_uuid = #{REPAYMENT_PLAN_UUID},
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				batch_no = #{BATCH_NO},
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				data_type = #{DATA_TYPE},
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				record_count = #{RECORD_COUNT},
+			</if>
+			<if test="PAYPLAN_INFO != null and PAYPLAN_INFO != '' ">
+				payplan_info = #{PAYPLAN_INFO},
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				report_type = #{REPORT_TYPE},
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				org_code = #{ORG_CODE},
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				contract_no = #{CONTRACT_NO},
+			</if>
+			<if test="DUE_BILL_NO != null and DUE_BILL_NO != '' ">
+				due_bill_no = #{DUE_BILL_NO},
+			</if>
+			<if test="REPAY_DATE != null and REPAY_DATE != '' ">
+				repay_date = #{REPAY_DATE},
+			</if>
+			<if test="COUNTER != null and COUNTER != '' ">
+				counter = #{COUNTER},
+			</if>
+			<if test="REPAY_PRI_AMT != null and REPAY_PRI_AMT != '' ">
+				repay_pri_amt = #{REPAY_PRI_AMT},
+			</if>
+			<if test="REPAY_INT_AMT != null and REPAY_INT_AMT != '' ">
+				repay_int_amt = #{REPAY_INT_AMT},
+			</if>
+			<if test="START_DATE != null and START_DATE != '' ">
+				start_date = #{START_DATE},
+			</if>
+			<if test="END_DATE != null and END_DATE != '' ">
+				end_date = #{END_DATE},
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				reserved_field1 = #{RESERVED_FIELD1},
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				reserved_field2 = #{RESERVED_FIELD2},
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3},
+			</if>
+		</trim>
+	</sql>
+	<sql id="andOtherAll">
+		<trim suffix="" suffixOverrides=",">
+			<if test="REPAYMENT_PLAN_UUID != null and REPAYMENT_PLAN_UUID != '' ">
+				and repayment_plan_uuid = #{REPAYMENT_PLAN_UUID}
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				and batch_no = #{BATCH_NO}
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				and data_type = #{DATA_TYPE}
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				and record_count = #{RECORD_COUNT}
+			</if>
+			<if test="PAYPLAN_INFO != null and PAYPLAN_INFO != '' ">
+				and payplan_info = #{PAYPLAN_INFO}
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				and report_type = #{REPORT_TYPE}
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				and org_code = #{ORG_CODE}
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				and contract_no = #{CONTRACT_NO}
+			</if>
+			<if test="DUE_BILL_NO != null and DUE_BILL_NO != '' ">
+				and due_bill_no = #{DUE_BILL_NO}
+			</if>
+			<if test="REPAY_DATE != null and REPAY_DATE != '' ">
+				and repay_date = #{REPAY_DATE}
+			</if>
+			<if test="COUNTER != null and COUNTER != '' ">
+				and counter = #{COUNTER}
+			</if>
+			<if test="REPAY_PRI_AMT != null and REPAY_PRI_AMT != '' ">
+				and repay_pri_amt = #{REPAY_PRI_AMT}
+			</if>
+			<if test="REPAY_INT_AMT != null and REPAY_INT_AMT != '' ">
+				and repay_int_amt = #{REPAY_INT_AMT}
+			</if>
+			<if test="START_DATE != null and START_DATE != '' ">
+				and start_date = #{START_DATE}
+			</if>
+			<if test="END_DATE != null and END_DATE != '' ">
+				and end_date = #{END_DATE}
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				and reserved_field1 = #{RESERVED_FIELD1}
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				and reserved_field2 = #{RESERVED_FIELD2}
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				and reserved_field3 = #{RESERVED_FIELD3}
+			</if>
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{ID}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.LoanPlanInfo">
+		insert into repayment_plan_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from repayment_plan_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from repayment_plan_info
+		<where>
+			repayment_plan_uuid = #{REPAYMENT_PLAN_UUID}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update repayment_plan_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.LoanPlanInfo">
+		update repayment_plan_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from repayment_plan_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from repayment_plan_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+</mapper>

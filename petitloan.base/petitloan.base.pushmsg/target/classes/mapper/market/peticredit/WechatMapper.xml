@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+         符号转义说明
+    &lt;          < 
+    &gt;          >  
+    &lt;&gt;     <>
+    &amp;        & 
+    &apos;       '
+    &quot;       "
+  <![CDATA[ 这里写你的SQL或者符号 ]]> 
+ -->
+<mapper namespace="com.huilian.market.base.wechat.dao.WechatDao" > 
+
+	<!-- Result Map 数据库映射到实体类  -->
+	<resultMap id="tableMapToModel" type="com.huilian.market.base.wechat.model.WechatModel" >
+		<id column="id" property="id"/>
+		<result column="wechat_num" property="wechatNum"/><!--活动编号-->
+		<result column="wechat_name" property="wechatName"/><!--活动名称-->
+		<result column="wechat_type" property="wechatType"/><!--活动类型-->
+		<result column="wechat_amount" property="wechatAmount"/><!--活动金额-->
+		<result column="wechat_des" property="wechatDes"/><!--活动描述-->
+		<result column="wechat_content" property="wechatContent"/><!--活动内容-->
+		<result column="wechat_cover" property="wechatCover"/><!--活动封面-->
+		<result column="wechat_title" property="wechatTitle"/><!--活动网页标题-->
+		<result column="wechat_img" property="wechatImg"/><!--活动网页图片-->
+		<result column="wechat_status" property="wechatStatus"/><!--活动状态-->
+		<result column="wechat_url" property="wechatUrl"/><!--活动URL-->
+		<result column="wechat_remark" property="wechatRemark"/><!--活动备注-->
+		<result column="wechat_start_time" property="wechatStartTime"/>
+		<result column="wechat_end_time" property="wechatEndTime"/>
+		<result column="wechat_batch" property="wechatBatch"/>
+		<result column="create_by" property="createBy"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_by" property="updateBy"/>
+		<result column="update_time" property="updateTime"/>
+	
+	</resultMap>
+	
+	<!--  -->
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,wechat_num,wechat_name,wechat_type,wechat_amount,wechat_des,wechat_content,wechat_cover,wechat_title,wechat_img,wechat_status,wechat_url,wechat_remark,wechat_start_time,wechat_end_time,wechat_batch,create_by,create_time,update_by,update_time,
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{id},#{wechatNum},#{wechatName},#{wechatType},#{wechatAmount},#{wechatDes},#{wechatContent},#{wechatCover},#{wechatTitle},#{wechatImg},#{wechatStatus},#{wechatUrl},#{wechatRemark},#{wechatStartTime},#{wechatEndTime},#{wechatBatch},#{createBy},#{createTime},#{updateBy},#{updateTime},
+		</trim>
+	</sql>
+	<!-- updateParams  更新列 -->
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			
+	    </trim>
+	</sql>
+	<!-- 查询条件  包含所有 -->
+	<sql id="andOtherAll">
+		<trim  suffixOverrides="," >
+			<if test="id != null and id != '' " >
+				and id =  #{id}
+		    </if>
+		</trim>
+	</sql>
+	<!-- columnKey  主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+	     and id=#{id}
+	</sql>
+	<!-- 添加,插入记录   -->
+	<insert id="insert"  parameterType="com.huilian.market.base.wechat.model.WechatModel" >
+	    insert into market_wechat(<include refid="tbaleColumns"/>) values(<include refid="insertParamsAll"/>);
+	</insert>
+	<!-- 查询,主键查询   -->
+	<select id="findById"  resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select <include refid="tbaleColumns"/> from market_wechat  
+		<where>
+		<include refid="columnKey"/>
+		</where>
+	</select>
+	<!-- 查询,主键查询   -->
+	<select id="findByNum"  resultMap="tableMapToModel" parameterType="java.util.Map">
+		select <include refid="tbaleColumns"/> from market_wechat  
+		<where>
+		wechat_num = #{wechatNum}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update market_wechat <set><include refid="updateParams"/></set>  
+		<where>
+		<include refid="columnKey"/> 
+		</where>
+	</update>
+	
+	<update id="update" parameterType="com.huilian.market.base.wechat.model.WechatModel">
+		update market_wechat <set><include refid="updateParams"/></set>  
+		<where>
+		<include refid="columnKey"/> 
+		</where>
+	</update>
+	
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"  parameterType="java.util.Map">
+		select <include refid="tbaleColumns"/>
+		from market_wechat
+		<where>
+		<include refid="andOtherAll"/>
+	    ${pageUtil.queryCondition}
+	    ${pageUtil.andCondition}
+	    </where>
+	    ${pageUtil.orderByCondition}
+	    ${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(1) from market_wechat
+		<where>
+		<include refid="andOtherAll"/>
+	    ${pageUtil.andCondition}
+	    ${pageUtil.orderByCondition}
+	    </where>
+	</select>
+
+</mapper>   

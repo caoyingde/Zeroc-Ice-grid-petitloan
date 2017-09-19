@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.market.base.wechat.dao.WechatTemplateDao">
+
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap id="tableMapToModel" type="com.huilian.market.base.wechat.model.WechatTemplateModel">
+		<id column="id" property="id" />
+		<result column="app_id" property="appId" />
+		<result column="template_id" property="templateId" />
+		<result column="title" property="title" />
+		<result column="primary_industry" property="primaryIndustry" />
+		<result column="deputy_industry" property="deputyIndustry" />
+		<result column="content" property="content" />
+		<result column="example" property="example" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,app_id,template_id,title,primary_industry,deputy_industry,content,example,
+		</trim>
+	</sql>
+
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{id},#{appId},#{templateId},#{title},#{primaryIndustry},#{deputyIndustry},#{content},#{example},
+		</trim>
+	</sql>
+
+	<!-- updateParams 更新列 -->
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="id != null and id != '' ">
+				id = #{id},
+			</if>
+			<if test="appId != null and appId != '' ">
+				app_id = #{appId},
+			</if>
+			<if test="templateId != null and templateId != '' ">
+				template_id = #{templateId},
+			</if>
+			<if test="title != null and title != '' ">
+				title = #{title},
+			</if>
+			<if test="primaryIndustry != null and primaryIndustry != '' ">
+				primary_industry = #{primaryIndustry},
+			</if>
+			<if test="deputyIndustry != null and deputyIndustry != '' ">
+				deputy_industry = #{deputyIndustry},
+			</if>
+			<if test="content != null and content != '' ">
+				content = #{content},
+			</if>
+			<if test="example != null and example != '' ">
+				example = #{example},
+			</if>
+		</trim>
+	</sql>
+	<!-- 查询条件 包含所有 -->
+	<sql id="andOtherAll">
+		<trim suffixOverrides=",">
+			<if test="appId != null and appId != '' ">
+				and app_id = #{appId}
+			</if>
+			<if test="templateId != null and templateId != '' ">
+				and template_id = #{templateId}
+			</if>
+			<if test="title != null and title != '' ">
+				and title = #{title}
+			</if>
+			<if test="primaryIndustry != null and primaryIndustry != '' ">
+				and primary_industry = #{primaryIndustry}
+			</if>
+			<if test="deputyIndustry != null and deputyIndustry != '' ">
+				and deputy_industry = #{deputyIndustry}
+			</if>
+			<if test="content != null and content != '' ">
+				and content = #{content}
+			</if>
+			<if test="example != null and example != '' ">
+				and example = #{example}
+			</if>
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{id}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.market.base.wechat.model.WechatTemplateModel">
+		insert into market_wechat_template(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat_template
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat_template
+		<where>
+			app_id = #{appId}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update market_wechat_template
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.market.base.wechat.model.WechatTemplateModel">
+		update market_wechat_template
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat_template
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from market_wechat_template
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+
+</mapper>   

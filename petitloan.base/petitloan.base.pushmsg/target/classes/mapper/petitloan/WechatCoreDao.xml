@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.market.base.wechat.dao.WechatCoreDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.market.base.wechat.model.WechatEntity"
+		id="tableMapToModel">
+		<id column="id" property="id" />
+		<result column="app_id" property="appId" />
+		<result column="app_secret" property="appSecret" />
+		<result column="token" property="token" />
+		<result column="access_token" property="accessToken" />
+		<result column="expires_in" property="expiresIn" />
+		<result column="account_desc" property="accountDesc" />
+		<result column="account_name" property="accountName" />
+		<result column="account_num" property="accountNum" />
+		<result column="account_level" property="accountLevel" />
+		<result column="original_id" property="originalId" />
+		<result column="code_url" property="codeUrl" />
+		<result column="email" property="email" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,app_id,app_secret,token,access_token,expires_in,account_desc,account_name,account_num,account_level,original_id,code_url,email,data_status,create_time,update_time,create_by,update_by
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{id},#{appId},#{appSecret},#{token},#{accessToken},#{expiresIn},#{accountDesc},#{accountName},#{accountNum},#{accountLevel},#{originalId},#{codeUrl},#{email},#{dataStatus},#{createTime},#{updateTime},#{createBy.id},#{updateBy.id}
+		</trim>
+	</sql>
+	<!-- updateParams 更新列 -->
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="id != null and id != '' ">
+				id = #{id},
+			</if>
+			<if test="appId != null and appId != '' ">
+				app_id = #{appId},
+			</if>
+			<if test="appSecret != null and appSecret != '' ">
+				app_secret = #{appSecret},
+			</if>
+			<if test="token != null and token != '' ">
+				token = #{token},
+			</if>
+			<if test="accessToken != null and accessToken != '' ">
+				access_token = #{accessToken},
+			</if>
+			<if test="expiresIn != null and expiresIn != '' ">
+				expires_in = #{expiresIn},
+			</if>
+			<if test="accountDesc != null and accountDesc != '' ">
+				account_desc = #{accountDesc},
+			</if>
+			<if test="accountName != null and accountName != '' ">
+				account_name = #{accountName},
+			</if>
+			<if test="accountNum != null and accountNum != '' ">
+				account_num = #{accountNum},
+			</if>
+			<if test="accountLevel != null and accountLevel != '' ">
+				account_level = #{accountLevel},
+			</if>
+			<if test="originalId != null and originalId != '' ">
+				original_id = #{originalId},
+			</if>
+			<if test="codeUrl != null and codeUrl != '' ">
+				code_url = #{codeUrl},
+			</if>
+			<if test="email != null and email != '' ">
+				email = #{email},
+			</if>
+			<if test="dataStatus != null and dataStatus != '' ">
+				data_status = #{dataStatus},
+			</if>
+			<if test="createTime != null and createTime != '' ">
+				create_time = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != '' ">
+				update_time = #{updateTime},
+			</if>
+			<if test="createBy != null and createBy != '' ">
+				create_by = #{createBy.id},
+			</if>
+			<if test="updateBy != null and updateBy != '' ">
+				update_by = #{updateBy.id},
+			</if>
+
+		</trim>
+	</sql>
+	<!-- 查询条件 包含所有 -->
+	<sql id="andOtherAll">
+		<trim suffixOverrides=",">
+			<if test="appId != null and appId != '' ">
+				and app_id = #{appId}
+			</if>
+			<if test="appSecret != null and appSecret != '' ">
+				and app_secret = #{appSecret}
+			</if>
+			<if test="token != null and token != '' ">
+				and token = #{token}
+			</if>
+			<if test="accessToken != null and accessToken != '' ">
+				and access_token = #{accessToken}
+			</if>
+			<if test="expiresIn != null and expiresIn != '' ">
+				and expires_in = #{expiresIn}
+			</if>
+			<if test="accountDesc != null and accountDesc != '' ">
+				and account_desc = #{accountDesc}
+			</if>
+			<if test="accountName != null and accountName != '' ">
+				and account_name = #{accountName}
+			</if>
+			<if test="accountNum != null and accountNum != '' ">
+				and account_num = #{accountNum}
+			</if>
+			<if test="accountLevel != null and accountLevel != '' ">
+				and account_level = #{accountLevel}
+			</if>
+			<if test="originalId != null and originalId != '' ">
+				and original_id = #{originalId}
+			</if>
+			<if test="codeUrl != null and codeUrl != '' ">
+				and code_url = #{codeUrl}
+			</if>
+			<if test="email != null and email != '' ">
+				and email = #{email}
+			</if>
+			<if test="dataStatus != null and dataStatus != '' ">
+				and data_status = #{dataStatus}
+			</if>
+			<if test="createTime != null and createTime != '' ">
+				and create_time = #{createTime}
+			</if>
+			<if test="createBy != null and createBy != '' ">
+				and create_by = #{createBy.id}
+			</if>
+			<if test="updateTime != null and updateTime != '' ">
+				and update_time = #{updateTime}
+			</if>
+			<if test="updateBy != null and updateBy != '' ">
+				and update_by = #{updateBy.id}
+			</if>
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{id}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.market.base.wechat.model.WechatEntity">
+		insert into market_wechat(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat
+		<where>
+			app_id = #{appId}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update market_wechat
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.market.base.wechat.model.WechatEntity">
+		update market_wechat
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from market_wechat
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+
+</mapper>

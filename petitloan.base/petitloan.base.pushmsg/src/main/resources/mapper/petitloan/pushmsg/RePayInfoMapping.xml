@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.RepayInfoDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.petitcredit.base.pushmsg.model.RepayInfoModel"
+		id="tableMapToModel">
+		<id column="id" property="id" />
+		<result column="loan_recovery_uuid" property="loan_recovery_uuid" />
+		<result column="batch_no" property="batch_no" />
+		<result column="data_type" property="data_type" />
+		<result column="record_count" property="record_count" />
+		<result column="report_type" property="report_type" />
+		<result column="org_code" property="org_code" />
+		<result column="contract_no" property="contract_no" />
+		<result column="due_bill_no" property="due_bill_no" />
+		<result column="repay_date" property="repay_date" />
+		<result column="counter" property="counter" />
+		<result column="customer_type" property="customer_type" />
+		<result column="customer_name" property="customer_name" />
+		<result column="certificate_type" property="certificate_type" />
+		<result column="certificate_no" property="certificate_no" />
+		<result column="gather_mode" property="gather_mode" />
+		<result column="repay_pri_amt" property="repay_pri_amt" />
+		<result column="repay_int_amt" property="repay_int_amt" />
+		<result column="start_date" property="start_date" />
+		<result column="end_date" property="end_date" />
+		<result column="receipt_type" property="receipt_type" />
+		<result column="delay_days" property="delay_days" />
+		<result column="delay_amt" property="delay_amt" />
+		<result column="delay_interest" property="delay_interest" />
+		<result column="delay_fee" property="delay_fee" />
+		<result column="pri_plty_rate" property="pri_plty_rate" />
+		<result column="remark" property="remark" />
+		<result column="body_xml_path" property="body_xml_path" />
+		<result column="push_status" property="push_status" />
+		<result column="reserved_field1" property="reserved_field1" />
+		<result column="reserved_field2" property="reserved_field2" />
+		<result column="reserved_field3" property="reserved_field3" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,loan_recovery_uuid,batch_no,data_type,record_count,report_type,org_code,contract_no,due_bill_no,repay_date,counter,customer_type,customer_name,certificate_type,certificate_no,gather_mode,repay_pri_amt,repay_int_amt,start_date,end_date,receipt_type,delay_days,delay_amt,delay_interest,delay_fee,pri_plty_rate,remark,body_xml_path,push_status,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{id},#{loan_recovery_uuid},#{batch_no},#{data_type},#{record_count},#{report_type},#{org_code},#{contract_no},#{due_bill_no},#{repay_date},#{counter},#{customer_type},#{customer_name},#{certificate_type},#{certificate_no},#{gather_mode},#{repay_pri_amt},#{repay_int_amt},#{start_date},#{end_date},#{receipt_type},#{delay_days},#{delay_amt},#{delay_interest},#{delay_fee},#{pri_plty_rate},#{remark},#{body_xml_path},#{push_status},#{reserved_field1},#{reserved_field2},#{reserved_field3}
+		</trim>
+	</sql>
+	<sql id="batchInsertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{list.id},#{list.loan_recovery_uuid},#{list.batch_no},#{list.data_type},#{list.record_count},#{list.report_type},#{list.org_code},#{list.contract_no},#{list.due_bill_no},#{list.repay_date},#{list.counter},#{list.customer_type},#{list.customer_name},#{list.certificate_type},#{list.certificate_no},#{list.gather_mode},#{list.repay_pri_amt},#{list.repay_int_amt},#{list.start_date},#{list.end_date},#{list.receipt_type},#{list.delay_days},#{list.delay_amt},#{list.delay_interest},#{list.delay_fee},#{list.pri_plty_rate},#{list.remark},#{list.body_xml_path},#{list.push_status},#{list.reserved_field1},#{list.reserved_field2},#{list.reserved_field3}
+		</trim>
+ 	</sql>
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="loan_recovery_uuid != null and loan_recovery_uuid != '' ">
+				loan_recovery_uuid = #{loan_recovery_uuid},
+			</if>
+			<if test="batch_no != null and batch_no != '' ">
+				batch_no = #{batch_no},
+			</if>
+			<if test="data_type != null and data_type != '' ">
+				data_type = #{data_type},
+			</if>
+			<if test="record_count != null and record_count != '' ">
+				record_count = #{record_count},
+			</if>
+			<if test="report_type != null and report_type != '' ">
+				report_type = #{report_type},
+			</if>
+			<if test="org_code != null and org_code != '' ">
+				org_code = #{org_code},
+			</if>
+			<if test="contract_no != null and contract_no != '' ">
+				contract_no = #{contract_no},
+			</if>
+			<if test="due_bill_no != null and due_bill_no != '' ">
+				due_bill_no = #{due_bill_no},
+			</if>
+			<if test="repay_date != null and repay_date != '' ">
+				repay_date = #{repay_date},
+			</if>
+			<if test="counter != null and counter != '' ">
+				counter = #{counter},
+			</if>
+			<if test="customer_type != null and customer_type != '' ">
+				customer_type = #{customer_type},
+			</if>
+			<if test="customer_name != null and customer_name != '' ">
+				customer_name = #{customer_name},
+			</if>
+			<if test="certificate_type != null and certificate_type != '' ">
+				certificate_type = #{certificate_type},
+			</if>
+			<if test="certificate_no != null and certificate_no != '' ">
+				certificate_no = #{certificate_no},
+			</if>
+			<if test="gather_mode != null and gather_mode != '' ">
+				gather_mode = #{gather_mode},
+			</if>
+			<if test="repay_pri_amt != null and repay_pri_amt != '' ">
+				repay_pri_amt = #{repay_pri_amt},
+			</if>
+			<if test="repay_int_amt != null and repay_int_amt != '' ">
+				repay_int_amt = #{repay_int_amt},
+			</if>
+			<if test="start_date != null and start_date != '' ">
+				start_date = #{start_date},
+			</if>
+			<if test="end_date != null and end_date != '' ">
+				end_date = #{end_date},
+			</if>
+			<if test="receipt_type != null and receipt_type != '' ">
+				receipt_type = #{receipt_type},
+			</if>
+			<if test="delay_days != null and delay_days != '' ">
+				delay_days = #{delay_days},
+			</if>
+			<if test="delay_amt != null and delay_amt != '' ">
+				delay_amt = #{delay_amt},
+			</if>
+			<if test="delay_interest != null and delay_interest != '' ">
+				delay_interest = #{delay_interest},
+			</if>
+			<if test="delay_fee != null and delay_fee != '' ">
+				delay_fee = #{delay_fee},
+			</if>
+			<if test="pri_plty_rate != null and pri_plty_rate != '' ">
+				pri_plty_rate = #{pri_plty_rate},
+			</if>
+			<if test="remark != null and remark != '' ">
+				remark = #{remark},
+			</if>
+			<if test="body_xml_path != null and body_xml_path != '' ">
+				body_xml_path = #{body_xml_path},
+			</if>
+			<if test="push_status != null and push_status != '' ">
+				push_status = #{push_status},
+			</if>
+			<if test="reserved_field1 != null and reserved_field1 != '' ">
+				reserved_field1 = #{reserved_field1},
+			</if>
+			<if test="reserved_field2 != null and reserved_field2 != '' ">
+				reserved_field2 = #{reserved_field2},
+			</if>
+			<if test="reserved_field3 != null and reserved_field3 != '' ">
+				reserved_field3 = #{reserved_field3},
+			</if>
+
+		</trim>
+	</sql>
+	<sql id="andOtherAll">
+		<trim suffix="" suffixOverrides=",">
+			<if test="loan_recovery_uuid != null and loan_recovery_uuid != '' ">
+				and loan_recovery_uuid = #{loan_recovery_uuid}
+			</if>
+			<if test="batch_no != null and batch_no != '' ">
+				and batch_no = #{batch_no}
+			</if>
+			<if test="data_type != null and data_type != '' ">
+				and data_type = #{data_type}
+			</if>
+			<if test="record_count != null and record_count != '' ">
+				and record_count = #{record_count}
+			</if>
+			<if test="report_type != null and report_type != '' ">
+				and report_type = #{report_type}
+			</if>
+			<if test="org_code != null and org_code != '' ">
+				and org_code = #{org_code},
+			</if>
+			<if test="contract_no != null and contract_no != '' ">
+				and contract_no = #{contract_no}
+			</if>
+			<if test="due_bill_no != null and due_bill_no != '' ">
+				and due_bill_no = #{due_bill_no}
+			</if>
+			<if test="repay_date != null and repay_date != '' ">
+				and repay_date = #{repay_date}
+			</if>
+			<if test="counter != null and counter != '' ">
+				and counter = #{counter}
+			</if>
+			<if test="customer_type != null and customer_type != '' ">
+				and customer_type = #{customer_type}
+			</if>
+			<if test="customer_name != null and customer_name != '' ">
+				and customer_name = #{customer_name}
+			</if>
+			<if test="certificate_type != null and certificate_type != '' ">
+				and certificate_type = #{certificate_type}
+			</if>
+			<if test="certificate_no != null and certificate_no != '' ">
+				and certificate_no = #{certificate_no}
+			</if>
+			<if test="gather_mode != null and gather_mode != '' ">
+				and gather_mode = #{gather_mode}
+			</if>
+			<if test="repay_pri_amt != null and repay_pri_amt != '' ">
+				and repay_pri_amt = #{repay_pri_amt}
+			</if>
+			<if test="repay_int_amt != null and repay_int_amt != '' ">
+				repay_int_amt = #{repay_int_amt}
+			</if>
+			<if test="start_date != null and start_date != '' ">
+				and start_date = #{start_date}
+			</if>
+			<if test="end_date != null and end_date != '' ">
+				and end_date = #{end_date},
+			</if>
+			<if test="receipt_type != null and receipt_type != '' ">
+				and receipt_type = #{receipt_type}
+			</if>
+			<if test="delay_days != null and delay_days != '' ">
+				and delay_days = #{delay_days}
+			</if>
+			<if test="delay_amt != null and delay_amt != '' ">
+				and delay_amt = #{delay_amt}
+			</if>
+			<if test="delay_interest != null and delay_interest != '' ">
+				and delay_interest = #{delay_interest}
+			</if>
+			<if test="delay_fee != null and delay_fee != '' ">
+				and delay_fee = #{delay_fee}
+			</if>
+			<if test="pri_plty_rate != null and pri_plty_rate != '' ">
+				and pri_plty_rate = #{pri_plty_rate}
+			</if>
+			<if test="remark != null and remark != '' ">
+				and remark = #{remark}
+			</if>
+			<if test="reserved_field1 != null and reserved_field1 != '' ">
+				and reserved_field1 = #{reserved_field1}
+			</if>
+			<if test="reserved_field2 != null and reserved_field2 != '' ">
+				and reserved_field2 = #{reserved_field2}
+			</if>
+			<if test="reserved_field3 != null and reserved_field3 != '' ">
+				and reserved_field3 = #{reserved_field3}
+			</if>
+
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{id}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.RepayInfoModel">
+		insert into repay_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from repay_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from repay_info
+		<where>
+			loan_recovery_uuid = #{loan_recovery_uuid}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update repay_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.RepayInfoModel">
+		update repay_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="andOtherAll" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from repay_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from repay_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+	<insert id="insertBatch"  parameterType="java.util.List" >
+    insert into repay_info(<include refid="tbaleColumns"/>) values
+    <foreach collection="list" item="list" index="index" separator="," >  
+      	 (<include refid="batchInsertParamsAll"/>)  
+   	</foreach> 
+</insert>
+</mapper>

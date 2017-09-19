@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.NetSignedDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.petitcredit.base.pushmsg.model.NetSigned"
+		id="tableMapToModel">
+		<id column="id" property="ID" />
+		<result column="net_signed_uuid" property="NET_SIGNED_UUID" />
+		<result column="contract_no" property="CONTRACT_NO" />
+		<result column="loan_cate" property="LOAN_CATE" />
+		<result column="customer_type" property="CUSTOMER_TYPE" />
+		<result column="customer_name" property="CUSTOMER_NAME" />
+		<result column="certificate_type" property="CERTIFICATE_TYPE" />
+		<result column="certificate_no" property="CERTIFICATE_NO" />
+		<result column="con_customer_type" property="CON_CUSTOMER_TYPE" />
+		<result column="con_customer_name" property="CON_CUSTOMER_NAME" />
+		<result column="con_certificate_type" property="CON_CERTIFICATE_TYPE" />
+		<result column="con_certificate_no" property="CON_CERTIFICATE_NO" />
+		<result column="con_fee" property="CON_FEE" />
+		<result column="contract_amount" property="CONTRACT_AMOUNT" />
+		<result column="int_rate" property="INT_RATE" />
+		<result column="contract_sign_date" property="CONTRACT_SIGN_DATE" />
+		<result column="reserved_field1" property="RESERVED_FIELD1" />
+		<result column="reserved_field2" property="RESERVED_FIELD2" />
+		<result column="reserved_field3" property="RESERVED_FIELD3" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,net_signed_uuid,contract_no,loan_cate,customer_type,customer_name,certificate_type,certificate_no,con_customer_type,con_customer_name,con_certificate_type,con_certificate_no,con_fee,contract_amount,int_rate,contract_sign_date,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{ID},#{NET_SIGNED_UUID},#{CONTRACT_NO},#{LOAN_CATE},#{CUSTOMER_TYPE},#{CUSTOMER_NAME},#{CERTIFICATE_TYPE},#{CERTIFICATE_NO},#{CON_CUSTOMER_TYPE},#{CON_CUSTOMER_NAME},#{CON_CERTIFICATE_TYPE},#{CON_CERTIFICATE_NO},#{CON_FEE},#{CONTRACT_AMOUNT},#{INT_RATE},#{CONTRACT_SIGN_DATE},#{RESERVED_FIELD1},#{RESERVED_FIELD2},#{RESERVED_FIELD3}
+		</trim>
+	</sql>
+	<!-- updateParams 更新列 -->
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="id != null and id != '' ">
+				id = #{ID},
+			</if>
+			<if test="NET_SIGNED_UUID != null and NET_SIGNED_UUID != '' ">
+				net_signed_uuid = #{NET_SIGNED_UUID},
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				contract_no = #{CONTRACT_NO},
+			</if>
+			<if test="LOAN_CATE != null and LOAN_CATE != '' ">
+				loan_cate = #{LOAN_CATE},
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				customer_type = #{CUSTOMER_TYPE},
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				customer_name = #{CUSTOMER_NAME},
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				certificate_type = #{CERTIFICATE_TYPE},
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				certificate_no = #{CERTIFICATE_NO},
+			</if>
+			<if test="CON_CUSTOMER_TYPE != null and CON_CUSTOMER_TYPE != '' ">
+				con_customer_type = #{CON_CUSTOMER_TYPE},
+			</if>
+			<if test="CON_CUSTOMER_NAME != null and CON_CUSTOMER_NAME != '' ">
+				con_customer_name = #{CON_CUSTOMER_NAME},
+			</if>
+			<if test="CON_CERTIFICATE_TYPE != null and CON_CERTIFICATE_TYPE != '' ">
+				con_certificate_type = #{CON_CERTIFICATE_TYPE},
+			</if>
+			<if test="CON_CERTIFICATE_NO != null and CON_CERTIFICATE_NO != '' ">
+				con_certificate_no = #{CON_CERTIFICATE_NO},
+			</if>
+			<if test="CON_FEE != null and CON_FEE != '' ">
+				con_fee = #{CON_FEE},
+			</if>
+			<if test="CONTRACT_AMOUNT != null and CONTRACT_AMOUNT != '' ">
+				contract_amount = #{CONTRACT_AMOUNT},
+			</if>
+			<if test="INT_RATE != null and INT_RATE != '' ">
+				int_rate = #{INT_RATE},
+			</if>
+			<if test="CONTRACT_SIGN_DATE != null and CONTRACT_SIGN_DATE != '' ">
+				contract_sign_date = #{CONTRACT_SIGN_DATE},
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				reserved_field1 = #{RESERVED_FIELD1},
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				reserved_field2 = #{RESERVED_FIELD2},
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3},
+			</if>
+
+		</trim>
+	</sql>
+	<!-- 查询条件 包含所有 -->
+	<sql id="andOtherAll">
+		<trim suffixOverrides=",">
+			<if test="NET_SIGNED_UUID != null and NET_SIGNED_UUID != '' ">
+				and net_signed_uuid = #{NET_SIGNED_UUID}
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				and contract_no = #{CONTRACT_NO}
+			</if>
+			<if test="LOAN_CATE != null and LOAN_CATE != '' ">
+				and loan_cate = #{LOAN_CATE}
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				and customer_type = #{CUSTOMER_TYPE}
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				and customer_name = #{CUSTOMER_NAME}
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				and certificate_type = #{CERTIFICATE_TYPE}
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				and certificate_no = #{CERTIFICATE_NO}
+			</if>
+			<if test="CON_CUSTOMER_TYPE != null and CON_CUSTOMER_TYPE != '' ">
+				and con_customer_type = #{CON_CUSTOMER_TYPE}
+			</if>
+			<if test="CON_CUSTOMER_NAME != null and CON_CUSTOMER_NAME != '' ">
+				and con_customer_name = #{CON_CUSTOMER_NAME}
+			</if>
+			<if test="CON_CERTIFICATE_TYPE != null and CON_CERTIFICATE_TYPE != '' ">
+				and con_certificate_type = #{CON_CERTIFICATE_TYPE}
+			</if>
+			<if test="CON_CERTIFICATE_NO != null and CON_CERTIFICATE_NO != '' ">
+				and con_certificate_no = #{CON_CERTIFICATE_NO}
+			</if>
+			<if test="CON_FEE != null and CON_FEE != '' ">
+				and con_fee = #{CON_FEE}
+			</if>
+			<if test="CONTRACT_AMOUNT != null and CONTRACT_AMOUNT != '' ">
+				and contract_amount = #{CONTRACT_AMOUNT}
+			</if>
+			<if test="INT_RATE != null and INT_RATE != '' ">
+				and int_rate = #{INT_RATE}
+			</if>
+			<if test="CONTRACT_SIGN_DATE != null and CONTRACT_SIGN_DATE != '' ">
+				and contract_sign_date = #{CONTRACT_SIGN_DATE}
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				and reserved_field1 = #{RESERVED_FIELD1}
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				and reserved_field2 = #{RESERVED_FIELD2}
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				and reserved_field3 = #{RESERVED_FIELD3}
+			</if>
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{ID}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.NetSigned">
+		insert into net_signed_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from net_signed_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from net_signed_info
+		<where>
+			net_signed_uuid = #{NET_SIGNED_UUID}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update net_signed_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.NetSigned">
+		update net_signed_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from net_signed_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from net_signed_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+
+</mapper>

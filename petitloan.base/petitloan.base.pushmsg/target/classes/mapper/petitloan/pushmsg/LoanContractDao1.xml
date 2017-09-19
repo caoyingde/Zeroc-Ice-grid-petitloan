@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.market.base.wechat.dao.WechatMsgLogDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.market.base.wechat.model.WechatSendMsgLogModel"
+		id="tableMapToModel">
+		<id column="id" property="ID" />
+		<result column="loan_contract_uuid" property="LOAN_CONTRACT_UUID" />
+		<result column="batch_no" property="BATCH_NO" /><!--//批次号  -->
+		<result column="data_type" property="DATA_TYPE" />
+		<result column="record_count" property="RECORD_COUNT" />
+		<result column="contract_info" property="CONTRACT_INFO" />
+		<result column="report_type" property="REPORT_TYPE" />
+		<result column="org_code" property="ORG_CODE" />
+		<result column="contract_no" property="CONTRACT_NO" />
+		<result column="loan_cate" property="LOAN_CATE" />
+		<result column="contract_name" property="CONTRACT_NAME" />
+		<result column="customer_type" property="CUSTOMER_TYPE" />
+		<result column="customer_name" property="CUSTOMER_NAME" />
+		<result column="certificate_type" property="CERTIFICATE_TYPE" />
+		<result column="certificate_no" property="CERTIFICATE_NO" />
+		<result column="linkman" property="LINKMAN" />
+		<result column="telephone" property="TELEPHONE" />
+		<result column="loan_object" property="LOAN_OBJECT" />
+		<result column="loan_object_size" property="LOAN_OBJECT_SIZE" />
+		<result column="contract_sign_date" property="CONTRACT_SIGN_DATE" />
+		<result column="contract_begin_date" property="CONTRACT_BEGIN_DATE" />
+		<result column="contract_end_date" property="CONTRACT_END_DATE" />
+		<result column="contract_amount" property="CONTRACT_AMOUNT" />
+		<result column="outstanding" property="OUTSTANDING" />
+		<result column="guar_type" property="GUAR_TYPE" />
+		<result column="ccy" property="CCY" />
+		<result column="is_real_quota_loan" property="IS_REAL_QUOTA_LOAN" />
+		<result column="real_quota_no" property="REAL_QUOTA_NO" />
+		<result column="int_rate" property="INT_RATE" />
+		<result column="pri_plty_rate" property="PRI_PLTY_RATE" />
+		<result column="contract_status" property="CONTRACT_STATUS" />
+		<result column="relation_manager" property="RELATION_MANAGER" />
+		<result column="dispute_scheme" property="DISPUTE_SCHEME" />
+		<result column="remark" property="REMARK" />
+		<result column="con_customer_type" property="CON_CUSTOMER_TYPE"/>
+		<result column="con_customer_name" property="CON_CUSTOMER_NAME"/>
+		<result column="con_certificate_type" property="CON_CERTIFICATE_TYPE"/>
+		<result column="con_certificate_no" property="CON_CERTIFICATE_NO"/>
+		<result column="con_jurisitc" property="CON_JURISITC" />
+		<result column="con_telephone" property="CON_TELEPHONE" />
+		<result column="con_locus" property="CON_LOCUS" />
+		<result column="con_postalcode" property="CON_POSTALCODE" />
+		<result column="con_fincal_org" property="CON_FINCAL_ORG" />
+		<result column="con_account_no" property="CON_ACCOUNT_NO" />
+		<result column="ass_customer_name" property="ASS_CUSTOMER_NAME" />
+		<result column="ass_juristic" property="ASS_JURISTIC" />
+		<result column="ass_telephone" property="ASS_TELEPHONE" />
+		<result column="ass_locus" property="ASS_LOCUS" />
+		<result column="ass_postalcode" property="ASS_POSTALCODE" />
+		<result column="con_fee" property="CON_FEE" />
+		<result column="co_customer_info" property="CO_CUSTOMER_INFO" />
+		<result column="reserved_field1" property="RESERVED_FIELD1"/>
+		<result column="reserved_field2" property="RESERVED_FIELD2"/>
+		<result column="reserved_field3" property="RESERVED_FIELD3"/>
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+id,loan_contract_uuid,batch_no,data_type,record_count,contract_info,report_type,org_code,contract_no,loan_cate,contract_name,customer_type,customer_name,certificate_type,certificate_no,linkman,telephone,loan_object,loan_object_size,contract_sign_date,contract_begin_date,contract_end_date,contract_amount,outstanding,guar_type,ccy,is_real_quota_loan,real_quota_no,int_rate,pri_plty_rate,contract_status,relation_manager,dispute_scheme,remark,con_customer_type,con_customer_name,con_certificate_type,con_certificate_no,con_jurisitc,con_telephone,con_locus,con_postalcode,con_fincal_org,con_account_no,ass_customer_name,ass_juristic,ass_telephone,ass_locus,ass_postalcode,con_fee,co_customer_info,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+		#{ID},#{LOAN_CONTRACT_UUID},#{BATCH_NO},#{DATA_TYPE},#{RECORD_COUNT},#{CONTRACT_INFO},#{REPORT_TYPE},#{ORG_CODE},#{CONTRACT_NO},#{LOAN_CATE},#{CONTRACT_NAME},#{CUSTOMER_TYPE},#{CUSTOMER_NAME},#{CERTIFICATE_TYPE},#{CERTIFICATE_NO},#{LINKMAN},#{TELEPHONE},#{LOAN_OBJECT},#{LOAN_OBJECT_SIZE},#{CONTRACT_SIGN_DATE},#{CONTRACT_BEGIN_DATE},#{CONTRACT_END_DATE},#{CONTRACT_AMOUNT},#{OUTSTANDING},#{GUAR_TYPE},#{CCY},#{IS_REAL_QUOTA_LOAN},#{REAL_QUOTA_NO},#{INT_RATE},#{PRI_PLTY_RATE},#{CONTRACT_STATUS},#{RELATION_MANAGER},#{DISPUTE_SCHEME},#{REMARK},#{CON_CUSTOMER_TYPE},#{CON_CUSTOMER_NAME},#{CON_CERTIFICATE_TYPE},#{CON_CERTIFICATE_NO},#{CON_JURISITC},#{CON_TELEPHONE},#{CON_LOCUS},#{CON_POSTALCODE},#{CON_FINCAL_ORG},#{CON_ACCOUNT_NO},#{ASS_CUSTOMER_NAME},#{ASS_JURISTIC},#{ASS_TELEPHONE},#{ASS_LOCUS},#{ASS_POSTALCODE},#{CON_FEE},#{CO_CUSTOMER_INFO},#{RESERVED_FIELD1},#{RESERVED_FIELD2},#{RESERVED_FIELD3}
+		</trim>
+	</sql>
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="LOAN_CONTRACT_UUID != null and LOAN_CONTRACT_UUID != '' ">
+				loan_contract_uuid = #{LOAN_CONTRACT_UUID},
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				batch_no = #{BATCH_NO},
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				data_type = #{DATA_TYPE},
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				record_count = #{RECORD_COUNT},
+			</if>
+			<if test="CONTRACT_INFO != null and CONTRACT_INFO != '' ">
+				contract_info = #{CONTRACT_INFO},
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				report_type = #{REPORT_TYPE},
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				org_code = #{ORG_CODE},
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				contract_no = #{CONTRACT_NO},
+			</if>
+			<if test="LOAN_CATE != null and LOAN_CATE != '' ">
+				loan_cate = #{LOAN_CATE},
+			</if>
+			<if test="CONTRACT_NAME != null and CONTRACT_NAME != '' ">
+				contract_name = #{CONTRACT_NAME},
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				customer_type = #{CUSTOMER_TYPE},
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				customer_name = #{CUSTOMER_NAME},
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				certificate_type = #{CERTIFICATE_TYPE},
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				certificate_no = #{CERTIFICATE_NO},
+			</if>
+			<if test="LINKMAN != null and LINKMAN != '' ">
+				linkman = #{LINKMAN},
+			</if>
+			<if test="TELEPHONE != null and TELEPHONE != '' ">
+				telephone = #{TELEPHONE},
+			</if>
+			<if test="LOAN_OBJECT != null and LOAN_OBJECT != '' ">
+				loan_object = #{LOAN_OBJECT},
+			</if>
+			<if test="LOAN_OBJECT_SIZE != null and LOAN_OBJECT_SIZE != '' ">
+				loan_object_size = #{LOAN_OBJECT_SIZE},
+			</if>
+			<if test="CONTRACT_SIGN_DATE != null and CONTRACT_SIGN_DATE != '' ">
+				contract_sign_date = #{CONTRACT_SIGN_DATE},
+			</if>
+			<if test="CONTRACT_BEGIN_DATE != null and CONTRACT_BEGIN_DATE != '' ">
+				contract_begin_date = #{CONTRACT_BEGIN_DATE},
+			</if>
+			<if test="CONTRACT_END_DATE != null and CONTRACT_END_DATE != '' ">
+				contract_end_date = #{CONTRACT_END_DATE},
+			</if>
+			<if test="CONTRACT_AMOUNT != null and CONTRACT_AMOUNT != '' ">
+				contract_amount = #{CONTRACT_AMOUNT},
+			</if>
+			<if test="OUTSTANDING != null and OUTSTANDING != '' ">
+				outstanding = #{OUTSTANDING},
+			</if>
+			<if test="GUAR_TYPE != null and GUAR_TYPE != '' ">
+				guar_type = #{GUAR_TYPE},
+			</if>
+			<if test="CCY != null and CCY != '' ">
+				ccy = #{CCY},
+			</if>
+			<if test="IS_REAL_QUOTA_LOAN != null and IS_REAL_QUOTA_LOAN != '' ">
+				is_real_quota_loan = #{IS_REAL_QUOTA_LOAN},
+			</if>
+			<if test="REAL_QUOTA_NO != null and REAL_QUOTA_NO != '' ">
+				real_quota_no = #{REAL_QUOTA_NO},
+			</if>
+			<if test="INT_RATE != null and INT_RATE != '' ">
+				int_rate = #{INT_RATE},
+			</if>
+			<if test="PRI_PLTY_RATE != null and PRI_PLTY_RATE != '' ">
+				pri_plty_rate = #{PRI_PLTY_RATE},
+			</if>
+			<if test="CONTRACT_STATUS != null and CONTRACT_STATUS != '' ">
+				contract_status = #{CONTRACT_STATUS},
+			</if>
+			<if test="RELATION_MANAGER != null and RELATION_MANAGER != '' ">
+				relation_manager = #{RELATION_MANAGER},
+			</if>
+			<if test="DISPUTE_SCHEME != null and DISPUTE_SCHEME != '' ">
+				dispute_scheme = #{DISPUTE_SCHEME},
+			</if>
+			<if test="REMARK != null and REMARK != '' ">
+				remark = #{REMARK},
+			</if>
+			<if test="CON_CUSTOMER_TYPE != null and CON_CUSTOMER_TYPE != '' ">
+				con_customer_type = #{CON_CUSTOMER_TYPE},
+			</if>
+			<if test="CON_CUSTOMER_NAME != null and CON_CUSTOMER_NAME != '' ">
+				con_customer_name = #{CON_CUSTOMER_NAME},
+			</if>
+			<if test="CON_CERTIFICATE_TYPE != null and CON_CERTIFICATE_TYPE != '' ">
+				con_certificate_type = #{CON_CERTIFICATE_TYPE},
+			</if>
+			<if test="CON_CERTIFICATE_NO != null and CON_CERTIFICATE_NO != '' ">
+				con_certificate_no = #{CON_CERTIFICATE_NO},
+			</if>
+			<if test="CON_JURISITC != null and CON_JURISITC != '' ">
+				con_jurisitc = #{CON_JURISITC},
+			</if>
+			<if test="CON_TELEPHONE != null and CON_TELEPHONE != '' ">
+				con_telephone = #{CON_TELEPHONE},
+			</if>
+			<if test="CON_LOCUS != null and CON_LOCUS != '' ">
+				con_locus = #{CON_LOCUS},
+			</if>
+			<if test="CON_POSTALCODE != null and CON_POSTALCODE != '' ">
+				con_postalcode = #{CON_POSTALCODE},
+			</if>
+			<if test="CON_FINCAL_ORG != null and CON_FINCAL_ORG != '' ">
+				con_fincal_org = #{CON_FINCAL_ORG},
+			</if>
+			<if test="CON_ACCOUNT_NO != null and CON_ACCOUNT_NO != '' ">
+				con_account_no = #{CON_ACCOUNT_NO},
+			</if>
+			<if test="ASS_CUSTOMER_NAME != null and ASS_CUSTOMER_NAME != '' ">
+				ass_customer_name = #{ASS_CUSTOMER_NAME},
+			</if>
+			<if test="ASS_JURISTIC != null and ASS_JURISTIC != '' ">
+				ass_juristic = #{ASS_JURISTIC},
+			</if>
+			<if test="ASS_TELEPHONE != null and ASS_TELEPHONE != '' ">
+				ass_telephone = #{ASS_TELEPHONE},
+			</if>
+			<if test="ASS_LOCUS != null and ASS_LOCUS != '' ">
+				ass_locus = #{ASS_LOCUS},
+			</if>
+			<if test="ASS_POSTALCODE != null and ASS_POSTALCODE != '' ">
+				ass_postalcode = #{ASS_POSTALCODE},
+			</if>
+			<if test="CON_FEE != null and CON_FEE != '' ">
+				con_fee = #{CON_FEE},
+			</if>
+			<if test="CO_CUSTOMER_INFO != null and CO_CUSTOMER_INFO != '' ">
+				co_customer_info = #{CO_CUSTOMER_INFO},
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				reserved_field1 = #{RESERVED_FIELD1},
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				reserved_field2 = #{RESERVED_FIELD2},
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3},
+			</if>
+
+		</trim>
+	</sql>
+	<sql id="andOtherAll">
+		<trim suffix="" suffixOverrides=",">
+			<if test="LOAN_CONTRACT_UUID != null and LOAN_CONTRACT_UUID != '' ">
+				and loan_contract_uuid = #{LOAN_CONTRACT_UUID}
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				and batch_no = #{BATCH_NO}
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				and data_type = #{DATA_TYPE}
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				and record_count = #{RECORD_COUNT}
+			</if>
+			<if test="CONTRACT_INFO != null and CONTRACT_INFO != '' ">
+				and contract_info = #{CONTRACT_INFO}
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				and report_type = #{REPORT_TYPE}
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				and org_code = #{ORG_CODE}
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				and contract_no = #{CONTRACT_NO}
+			</if>
+			<if test="LOAN_CATE != null and LOAN_CATE != '' ">
+				and loan_cate = #{LOAN_CATE}
+			</if>
+			<if test="CONTRACT_NAME != null and CONTRACT_NAME != '' ">
+				and contract_name = #{CONTRACT_NAME}
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				and customer_type = #{CUSTOMER_TYPE}
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				and customer_name = #{CUSTOMER_NAME}
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				and certificate_type = #{CERTIFICATE_TYPE}
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				and certificate_no = #{CERTIFICATE_NO}
+			</if>
+			<if test="LINKMAN != null and LINKMAN != '' ">
+				and linkman = #{LINKMAN}
+			</if>
+			<if test="TELEPHONE != null and TELEPHONE != '' ">
+				and telephone = #{TELEPHONE}
+			</if>
+			<if test="LOAN_OBJECT != null and LOAN_OBJECT != '' ">
+				and loan_object = #{LOAN_OBJECT}
+			</if>
+			<if test="LOAN_OBJECT_SIZE != null and LOAN_OBJECT_SIZE != '' ">
+				and loan_object_size = #{LOAN_OBJECT_SIZE}
+			</if>
+			<if test="CONTRACT_SIGN_DATE != null and CONTRACT_SIGN_DATE != '' ">
+				and contract_sign_date = #{CONTRACT_SIGN_DATE}
+			</if>
+			<if test="CONTRACT_BEGIN_DATE != null and CONTRACT_BEGIN_DATE != '' ">
+				and contract_begin_date = #{CONTRACT_BEGIN_DATE}
+			</if>
+			<if test="CONTRACT_END_DATE != null and CONTRACT_END_DATE != '' ">
+				and contract_end_date = #{CONTRACT_END_DATE}
+			</if>
+			<if test="CONTRACT_AMOUNT != null and CONTRACT_AMOUNT != '' ">
+				and contract_amount = #{CONTRACT_AMOUNT}
+			</if>
+			<if test="OUTSTANDING != null and OUTSTANDING != '' ">
+				and outstanding = #{OUTSTANDING}
+			</if>
+			<if test="GUAR_TYPE != null and GUAR_TYPE != '' ">
+				and guar_type = #{GUAR_TYPE}
+			</if>
+			<if test="CCY != null and CCY != '' ">
+				and ccy = #{CCY}
+			</if>
+			<if test="IS_REAL_QUOTA_LOAN != null and IS_REAL_QUOTA_LOAN != '' ">
+				and is_real_quota_loan = #{IS_REAL_QUOTA_LOAN}
+			</if>
+			<if test="REAL_QUOTA_NO != null and REAL_QUOTA_NO != '' ">
+				and real_quota_no = #{REAL_QUOTA_NO}
+			</if>
+			<if test="INT_RATE != null and INT_RATE != '' ">
+				and int_rate = #{INT_RATE}
+			</if>
+			<if test="PRI_PLTY_RATE != null and PRI_PLTY_RATE != '' ">
+				and pri_plty_rate = #{PRI_PLTY_RATE}
+			</if>
+			<if test="CONTRACT_STATUS != null and CONTRACT_STATUS != '' ">
+				and contract_status = #{CONTRACT_STATUS}
+			</if>
+			<if test="RELATION_MANAGER != null and RELATION_MANAGER != '' ">
+				and relation_manager = #{RELATION_MANAGER}
+			</if>
+			<if test="DISPUTE_SCHEME != null and DISPUTE_SCHEME != '' ">
+				and dispute_scheme = #{DISPUTE_SCHEME}
+			</if>
+			<if test="REMARK != null and REMARK != '' ">
+				and remark = #{REMARK}
+			</if>
+			<if test="CON_CUSTOMER_TYPE != null and CON_CUSTOMER_TYPE != '' ">
+				and con_customer_type = #{CON_CUSTOMER_TYPE}
+			</if>
+			<if test="CON_CUSTOMER_NAME != null and CON_CUSTOMER_NAME != '' ">
+				and con_customer_name = #{CON_CUSTOMER_NAME}
+			</if>
+			<if test="CON_CERTIFICATE_TYPE != null and CON_CERTIFICATE_TYPE != '' ">
+				and con_certificate_type = #{CON_CERTIFICATE_TYPE}
+			</if>
+			<if test="CON_CERTIFICATE_NO != null and CON_CERTIFICATE_NO != '' ">
+				and con_certificate_no = #{CON_CERTIFICATE_NO}
+			</if>
+			<if test="CON_JURISITC != null and CON_JURISITC != '' ">
+				and con_jurisitc = #{CON_JURISITC}
+			</if>
+			<if test="CON_TELEPHONE != null and CON_TELEPHONE != '' ">
+				and con_telephone = #{CON_TELEPHONE}
+			</if>
+			<if test="CON_LOCUS != null and CON_LOCUS != '' ">
+				and con_locus = #{CON_LOCUS}
+			</if>
+			<if test="CON_POSTALCODE != null and CON_POSTALCODE != '' ">
+				and con_postalcode = #{CON_POSTALCODE}
+			</if>
+			<if test="CON_FINCAL_ORG != null and CON_FINCAL_ORG != '' ">
+				and con_fincal_org = #{CON_FINCAL_ORG}
+			</if>
+			<if test="CON_ACCOUNT_NO != null and CON_ACCOUNT_NO != '' ">
+				and con_account_no = #{CON_ACCOUNT_NO}
+			</if>
+			<if test="ASS_CUSTOMER_NAME != null and ASS_CUSTOMER_NAME != '' ">
+				and ass_customer_name = #{ASS_CUSTOMER_NAME}
+			</if>
+			<if test="ASS_JURISTIC != null and ASS_JURISTIC != '' ">
+				and ass_juristic = #{ASS_JURISTIC}
+			</if>
+			<if test="ASS_TELEPHONE != null and ASS_TELEPHONE != '' ">
+				and ass_telephone = #{ASS_TELEPHONE}
+			</if>
+			<if test="ASS_LOCUS != null and ASS_LOCUS != '' ">
+				and ass_locus = #{ASS_LOCUS}
+			</if>
+			<if test="ASS_POSTALCODE != null and ASS_POSTALCODE != '' ">
+				and ass_postalcode = #{ASS_POSTALCODE}
+			</if>
+			<if test="CON_FEE != null and CON_FEE != '' ">
+				and con_fee = #{CON_FEE}
+			</if>
+			<if test="CO_CUSTOMER_INFO != null and CO_CUSTOMER_INFO != '' ">
+				and co_customer_info = #{CO_CUSTOMER_INFO}
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				and reserved_field1 = #{RESERVED_FIELD1}
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				and reserved_field2 = #{RESERVED_FIELD2}
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3}
+			</if>
+
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{ID}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.LoanContract">
+		insert into loan_contract_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from loan_contract_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from loan_contract_info
+		<where>
+			loan_contract_uuid = #{LOAN_CONTRACT_UUID}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update loan_contract_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.LoanContract">
+		update loan_contract_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from loan_contract_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from loan_contract_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+         符号转义说明
+    &lt;          < 
+    &gt;          >  
+    &lt;&gt;     <>
+    &amp;        & 
+    &apos;       '
+    &quot;       "
+  <![CDATA[ 这里写你的SQL或者符号 ]]> 
+ -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.NetBookInfoDao" > 
+
+	<!-- Result Map 数据库映射到实体类  -->
+	<resultMap id="tableMapToModel" type="com.huilian.petitcredit.base.pushmsg.model.NetBookInfoModel" >
+		<id column="id" property="id"/>
+		<result column="net_book_uuid" property="net_book_uuid"/>
+		<result column="batch_no" property="batch_no"/>
+		<result column="data_type" property="data_type"/>
+		<result column="record_count" property="record_count"/>
+		<result column="org_code" property="org_code"/>
+		<result column="contract_no" property="contract_no"/>
+		<result column="loan_cate" property="loan_cate"/>
+		<result column="customer_type" property="customer_type"/>
+		<result column="customer_name" property="customer_name"/>
+		<result column="certificate_type" property="certificate_type"/>
+		<result column="certificate_no" property="certificate_no"/>
+		<result column="con_customer_type" property="con_customer_type"/>
+		<result column="con_customer_name" property="con_customer_name"/>
+		<result column="con_certificate_type" property="con_certificate_type"/>
+		<result column="con_certificate_no" property="con_certificate_no"/>
+		<result column="con_fee" property="con_fee"/>
+		<result column="contract_amount" property="contract_amount"/>
+		<result column="contrat_sign_date" property="contract_sign_date"/>
+		<result column="int_rate" property="int_rate"/>
+		<result column="push_status" property="push_status"/>
+		<result column="reserved_field1" property="reserved_field1"/>
+		<result column="reserved_field2" property="reserved_field2"/>
+		<result column="reserved_field3" property="reserved_field3"/>
+	</resultMap>
+	
+	<!--  -->
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,net_book_uuid,batch_no,data_type,record_count,org_code,contract_no,loan_cate,customer_type,customer_name,certificate_type,certificate_no,con_customer_type,con_customer_name,con_certificate_type,con_certificate_no,con_fee,contract_amount,contrat_sign_date,int_rate,push_status,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{id},#{net_book_uuid},#{batch_no},#{data_type},#{record_count},#{org_code},#{contract_no},#{loan_cate},#{customer_type},#{customer_name},#{certificate_type},#{certificate_no},#{con_customer_type},#{con_customer_name},#{con_certificate_type},#{con_certificate_no},#{con_fee},#{contract_amount},#{contract_sign_date},#{int_rate},#{push_status},#{reserved_field1},#{reserved_field2},#{reserved_field3}
+		</trim>
+	</sql>
+	<sql id="batchInsertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{list.id},#{list.net_book_uuid},#{list.batch_no},#{list.data_type},#{list.record_count},#{list.org_code},#{list.contract_no},#{list.loan_cate},#{list.customer_type},#{list.customer_name},#{list.certificate_type},#{list.certificate_no},#{list.con_customer_type},#{list.con_customer_name},#{list.con_certificate_type},#{list.con_certificate_no},#{list.con_fee},#{list.contract_amount},#{list.contract_sign_date},#{list.int_rate},#{list.push_status},#{list.reserved_field1},#{list.reserved_field2},#{list.reserved_field3}
+		</trim>
+ 	</sql>
+
+	<!-- updateParams  更新列 -->
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="id != null and id != '' ">
+				id = #{id},
+			</if>
+			<if test="net_book_uuid != null and net_book_uuid != '' ">
+				net_book_uuid = #{net_book_uuid},
+			</if>
+			<if test="batch_no != null and batch_no != '' ">
+				batch_no = #{batch_no},
+			</if>
+			<if test="data_type != null and data_type != '' ">
+				data_type = #{data_type},
+			</if>
+			<if test="record_count != null and record_count != '' ">
+				record_count = #{record_count},
+			</if>
+			<if test="org_code != null and org_code != '' ">
+				org_code = #{org_code},
+			</if>
+			<if test="contract_no != null and contract_no != '' ">
+				contract_no = #{contract_no},
+			</if>
+			<if test="loan_cate != null and loan_cate != '' ">
+				loan_cate = #{loan_cate},
+			</if>
+			<if test="customer_type != null and customer_type != '' ">
+				customer_type = #{customer_type},
+			</if>
+			<if test="customer_name != null and customer_name != '' ">
+				customer_name = #{customer_name},
+			</if>
+			<if test="certificate_type != null and certificate_type != '' ">
+				certificate_type = #{certificate_type},
+			</if>
+			<if test="certificate_no != null and certificate_no != '' ">
+				certificate_no = #{certificate_no},
+			</if>
+			<if test="con_customer_type != null and con_customer_type != '' ">
+				con_customer_type = #{con_customer_type},
+			</if>
+			<if test="con_customer_name != null and con_customer_name != '' ">
+				con_customer_name = #{con_customer_name},
+			</if>
+			<if test="con_certificate_type != null and con_certificate_type != '' ">
+				con_certificate_type = #{con_certificate_type},
+			</if>
+			<if test="con_certificate_no != null and con_certificate_no != '' ">
+				con_certificate_no = #{con_certificate_no},
+			</if>
+			<if test="con_fee != null and con_fee != '' ">
+				con_fee = #{con_fee},
+			</if>
+			<if test="contract_amount != null and contract_amount != '' ">
+				contract_amount = #{contract_amount},
+			</if>
+			<if test="contract_sign_date != null and contract_sign_date != '' ">
+				contract_sign_date = #{contract_sign_date},
+			</if>
+			<if test="int_rate != null and int_rate != '' ">
+				int_rate = #{int_rate},
+			</if>
+			<if test="body_xml_path != null and body_xml_path != '' ">
+				body_xml_path = #{body_xml_path},
+			</if>
+			<if test="push_status != null and push_status != '' ">
+				push_status = #{push_status},
+			</if>
+			<if test="reserved_field1 != null and reserved_field1 != '' ">
+				reserved_field1 = #{reserved_field1},
+			</if>
+			<if test="reserved_field2 != null and reserved_field2 != '' ">
+				reserved_field2 = #{reserved_field2},
+			</if>
+			<if test="reserved_field3 != null and reserved_field3 != '' ">
+				reserved_field3 = #{reserved_field3},
+			</if>
+			
+	    </trim>
+	</sql>
+	<!-- 查询条件  包含所有 -->
+	<sql id="andOtherAll">
+		<trim  suffixOverrides="," >
+			<if test="net_book_uuid != null and net_book_uuid != '' ">
+				and net_book_uuid = #{net_book_uuid}
+			</if>
+			<if test="batch_no != null and batch_no != '' ">
+				and batch_no = #{batch_no}
+			</if>
+			<if test="data_type != null and data_type != '' ">
+				and data_type = #{data_type}
+			</if>
+			<if test="record_count != null and record_count != '' ">
+				and record_count = #{record_count}
+			</if>
+			<if test="org_code != null and org_code != '' ">
+				and org_code = #{org_code},
+			</if>
+			<if test="contract_no != null and contract_no != '' ">
+				and contract_no = #{contract_no}
+			</if>
+			<if test="loan_cate != null and loan_cate != '' ">
+				and loan_cate = #{loan_cate}
+			</if>
+			<if test="customer_type != null and customer_type != '' ">
+				and customer_type = #{customer_type}
+			</if>
+			<if test="customer_name != null and customer_name != '' ">
+				and customer_name = #{customer_name}
+			</if>
+			<if test="certificate_type != null and certificate_type != '' ">
+				and certificate_type = #{certificate_type}
+			</if>
+			<if test="certificate_no != null and certificate_no != '' ">
+				and certificate_no = #{certificate_no}
+			</if>
+			<if test="con_customer_type != null and con_customer_type != '' ">
+				and con_customer_type = #{con_customer_type}
+			</if>
+			<if test="con_customer_name != null and con_customer_name != '' ">
+				and con_customer_name = #{con_customer_name}
+			</if>
+			<if test="con_certificate_type != null and con_certificate_type != '' ">
+				and con_certificate_type = #{con_certificate_type}
+			</if>
+			<if test="con_certificate_no != null and con_certificate_no != '' ">
+				and con_certificate_no = #{con_certificate_no}
+			</if>
+			<if test="con_fee != null and con_fee != '' ">
+				and con_fee = #{con_fee}
+			</if>
+			<if test="contract_amount != null and contract_amount != '' ">
+				and contract_amount = #{contract_amount}
+			</if>
+			<if test="contract_sign_date != null and contract_sign_date != '' ">
+				and contract_sign_date = #{contract_sign_date}
+			</if>
+			<if test="int_rate != null and int_rate != '' ">
+				and int_rate = #{int_rate}
+			</if>
+			<if test="reserved_field1 != null and reserved_field1 != '' ">
+				and reserved_field1 = #{reserved_field1}
+			</if>
+			<if test="reserved_field2 != null and reserved_field2 != '' ">
+				and reserved_field2 = #{reserved_field2}
+			</if>
+			<if test="reserved_field3 != null and reserved_field3 != '' ">
+				and reserved_field3 = #{reserved_field3}
+			</if>
+			
+		</trim>
+	</sql>
+	<!-- columnKey  主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+	     and id=#{id}
+	</sql>
+	<!-- 添加,插入记录   -->
+	<insert id="insert"  parameterType="com.huilian.petitcredit.base.pushmsg.model.NetBookInfoModel" >
+	    insert into net_book_info(<include refid="tbaleColumns"/>) values(<include refid="insertParamsAll"/>);
+	</insert>
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into net_book_info(
+		<include refid="tbaleColumns" />
+		) values
+		<foreach collection="list" item="list" index="index" separator=",">
+			(<include refid="batchInsertParamsAll" />)
+		</foreach>
+	</insert>
+	<!-- 查询,主键查询   -->
+	<select id="findById"  resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select <include refid="tbaleColumns"/> from net_book_info  
+		<where>
+		<include refid="columnKey"/>
+		</where>
+	</select>
+	<!-- 查询,主键查询   -->
+	<select id="findByNum"  resultMap="tableMapToModel" parameterType="java.util.Map">
+		select <include refid="tbaleColumns"/> from net_book_info  
+		<where>
+		net_book_uuid = #{net_book_uuid}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update net_book_info <set><include refid="updateParams"/></set>  
+		<where>
+		<include refid="columnKey"/> 
+		</where>
+	</update>
+	
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.NetBookInfoModel">
+		update net_book_info 
+		<set>
+			<include refid="updateParams"/>
+		</set>
+		<where>
+			 <include refid="andOtherAll"/> 
+		</where>
+	</update>
+	
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"  parameterType="java.util.Map">
+		select <include refid="tbaleColumns"/>
+		from net_book_info
+		<where>
+		<include refid="andOtherAll"/>
+	    ${pageUtil.queryCondition}
+	    ${pageUtil.andCondition}
+	    </where>
+	    ${pageUtil.orderByCondition}
+	    ${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(1) from net_book_info
+		<where>
+		<include refid="andOtherAll"/>
+	    ${pageUtil.andCondition}
+	    ${pageUtil.orderByCondition}
+	    </where>
+	</select>
+
+</mapper>   

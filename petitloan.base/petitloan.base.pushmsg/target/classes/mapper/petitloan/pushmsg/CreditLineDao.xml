@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.CreditLineDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.petitcredit.base.pushmsg.model.CreditLine"
+		id="tableMapToModel">
+		<id column="id" property="ID" />
+		<result column="credit_line_uuid" property="CREDIT_LINE_UUID" />
+		<result column="batch_no" property="BATCH_NO" /><!--//批次号  -->
+		<result column="data_type" property="DATA_TYPE" />
+		<result column="record_count" property="RECORD_COUNT" />
+		<result column="quota_info" property="QUOTA_INFO" />
+		<result column="report_type" property="REPORT_TYPE" />
+		<result column="org_code" property="ORG_CODE" />
+		<result column="contract_no" property="CONTRACT_NO" />
+		<result column="contract_name" property="CONTRACT_NAME" />
+		<result column="customer_type" property="CUSTOMER_TYPE" />
+		<result column="customer_name" property="CUSTOMER_NAME" />
+		<result column="certificate_type" property="CERTIFICATE_TYPE" />
+		<result column="certificate_no" property="CERTIFICATE_NO" />
+		<result column="contract_sign_date" property="CONTRACT_SIGN_DATE" />
+		<result column="contract_begin_date" property="CONTRACT_BEGIN_DATE" />
+		<result column="contract_end_date" property="CONTRACT_END_DATE" />
+		<result column="contract_amount" property="CONTRACT_AMOUNT" />
+		<result column="ccy" property="CCY" />
+		<result column="used_amount" property="USED_AMOUNT" />
+		<result column="remain_amount" property="REMAIN_AMOUNT" />
+		<result column="guar_type" property="GUAR_TYPE" />
+		<result column="is_circle" property="IS_CIRCLE" />
+		<result column="contract_status" property="CONTRACT_STATUS" />
+		<result column="relation_manager" property="RELATION_MANAGER" />
+		<result column="remark" property="REMARK" />
+		<result column="reserved_field1" property="RESERVED_FIELD1"/>
+		<result column="reserved_field2" property="RESERVED_FIELD2"/>
+		<result column="reserved_field3" property="RESERVED_FIELD3"/>
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,credit_line_uuid,batch_no,data_type,record_count,quota_info,report_type,org_codecontract_no,contract_name,customer_type,customer_name,certificate_type,certificate_no,contract_sign_date,contract_begin_date,contract_end_date,contract_amount,ccy,used_amount,remain_amount,guar_type,is_circle,contract_status,relation_manager,remark,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{ID},#{CREDIT_LINE_UUID},#{BATCH_NO},#{DATA_TYPE},#{RECORD_COUNT},#{QUOTA_INFO},#{REPORT_TYPE},#{ORG_CODE},#{CONTRACT_NO},#{CONTRACT_NAME},#{CUSTOMER_TYPE},#{CUSTOMER_NAME},#{CERTIFICATE_TYPE},#{CERTIFICATE_NO},#{CONTRACT_SIGN_DATE},#{CONTRACT_BEGIN_DATE},#{CONTRACT_END_DATE},#{CONTRACT_AMOUNT},#{CCY},#{USED_AMOUNT},#{REMAIN_AMOUNT},#{GUAR_TYPE},#{IS_CIRCLE},#{CONTRACT_STATUS},#{RELATION_MANAGER},#{REMARK},#{RESERVED_FIELD1},#{RESERVED_FIELD2},#{RESERVED_FIELD3}
+		</trim>
+	</sql>
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="CREDIT_LINE_UUID != null and CREDIT_LINE_UUID != '' ">
+				credit_line_uuid = #{CREDIT_LINE_UUID},
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				batch_no = #{BATCH_NO},
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				data_type = #{DATA_TYPE},
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				record_count = #{RECORD_COUNT},
+			</if>
+			<if test="QUOTA_INFO != null and QUOTA_INFO != '' ">
+				quota_info = #{QUOTA_INFO},
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				report_type = #{REPORT_TYPE},
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				org_code = #{ORG_CODE},
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				contract_no = #{CONTRACT_NO},
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				customer_type = #{CUSTOMER_TYPE},
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				customer_name = #{CUSTOMER_NAME},
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				certificate_type = #{CERTIFICATE_TYPE},
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				certificate_no = #{CERTIFICATE_NO},
+			</if>
+			<if test="CONTRACT_SIGN_DATE != null and CONTRACT_SIGN_DATE != '' ">
+				contract_sign_date = #{CONTRACT_SIGN_DATE},
+			</if>
+			<if test="CONTRACT_BEGIN_DATE != null and CONTRACT_BEGIN_DATE != '' ">
+				contract_begin_date = #{CONTRACT_BEGIN_DATE},
+			</if>
+			<if test="CONTRACT_END_DATE != null and CONTRACT_END_DATE != '' ">
+				contract_end_date = #{CONTRACT_END_DATE},
+			</if>
+			<if test="CONTRACT_AMOUNT != null and CONTRACT_AMOUNT != '' ">
+				contract_amount = #{CONTRACT_AMOUNT},
+			</if>
+			<if test="CCY != null and CCY != '' ">
+				ccy = #{CCY},
+			</if>
+			<if test="USED_AMOUNT != null and USED_AMOUNT != '' ">
+				used_amount = #{USED_AMOUNT},
+			</if>
+			<if test="REMAIN_AMOUNT != null and REMAIN_AMOUNT != '' ">
+				remain_amount = #{REMAIN_AMOUNT},
+			</if>
+			<if test="GUAR_TYPE != null and GUAR_TYPE != '' ">
+				guar_type = #{GUAR_TYPE},
+			</if>
+			<if test="IS_CIRCLE != null and IS_CIRCLE != '' ">
+				is_circle = #{IS_CIRCLE},
+			</if>
+			<if test="CONTRACT_STATUS != null and CONTRACT_STATUS != '' ">
+				contract_status = #{CONTRACT_STATUS},
+			</if>
+			<if test="RELATION_MANAGER != null and RELATION_MANAGER != '' ">
+				relation_manager = #{RELATION_MANAGER},
+			</if>
+			<if test="REMARK != null and REMARK != '' ">
+				remark = #{REMARK},
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				reserved_field1 = #{RESERVED_FIELD1},
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				reserved_field2 = #{RESERVED_FIELD2},
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3},
+			</if>
+
+		</trim>
+	</sql>
+	<sql id="andOtherAll">
+		<trim suffix="" suffixOverrides=",">
+			<if test="CREDIT_LINE_UUID != null and CREDIT_LINE_UUID != '' ">
+				and credit_line_uuid = #{CREDIT_LINE_UUID}
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				and batch_no = #{BATCH_NO}
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				and data_type = #{DATA_TYPE}
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				and record_count = #{RECORD_COUNT}
+			</if>
+			<if test="QUOTA_INFO != null and QUOTA_INFO != '' ">
+				and quota_info = #{QUOTA_INFO}
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				and report_type = #{REPORT_TYPE}
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				and org_code = #{ORG_CODE}
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				and contract_no = #{CONTRACT_NO}
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				and customer_type = #{CUSTOMER_TYPE}
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				and customer_name = #{CUSTOMER_NAME}
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				and certificate_type = #{CERTIFICATE_TYPE}
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				and certificate_no = #{CERTIFICATE_NO}
+			</if>
+			<if test="CONTRACT_SIGN_DATE != null and CONTRACT_SIGN_DATE != '' ">
+				and contract_sign_date = #{CONTRACT_SIGN_DATE}
+			</if>
+			<if test="CONTRACT_BEGIN_DATE != null and CONTRACT_BEGIN_DATE != '' ">
+				and contract_begin_date = #{CONTRACT_BEGIN_DATE}
+			</if>
+			<if test="CONTRACT_END_DATE != null and CONTRACT_END_DATE != '' ">
+				and contract_end_date = #{CONTRACT_END_DATE}
+			</if>
+			<if test="CONTRACT_AMOUNT != null and CONTRACT_AMOUNT != '' ">
+				and contract_amount = #{CONTRACT_AMOUNT}
+			</if>
+			<if test="CCY != null and CCY != '' ">
+				and ccy = #{CCY}
+			</if>
+			<if test="USED_AMOUNT != null and USED_AMOUNT != '' ">
+				and used_amount = #{USED_AMOUNT}
+			</if>
+			<if test="REMAIN_AMOUNT != null and REMAIN_AMOUNT != '' ">
+				and remain_amount = #{REMAIN_AMOUNT}
+			</if>
+			<if test="GUAR_TYPE != null and GUAR_TYPE != '' ">
+				and guar_type = #{GUAR_TYPE}
+			</if>
+			<if test="IS_CIRCLE != null and IS_CIRCLE != '' ">
+				and is_circle = #{IS_CIRCLE}
+			</if>
+			<if test="CONTRACT_STATUS != null and CONTRACT_STATUS != '' ">
+				and contract_status = #{CONTRACT_STATUS}
+			</if>
+			<if test="RELATION_MANAGER != null and RELATION_MANAGER != '' ">
+				and relation_manager = #{RELATION_MANAGER}
+			</if>
+			<if test="REMARK != null and REMARK != '' ">
+				and remark = #{REMARK}
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				and reserved_field1 = #{RESERVED_FIELD1}
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				and reserved_field2 = #{RESERVED_FIELD2}
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3}
+			</if>
+
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{ID}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.CreditLine">
+		insert into credit_line_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from credit_line_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from credit_line_info
+		<where>
+			credit_line_uuid = #{CREDIT_LINE_UUID}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update credit_line_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.CreditLine">
+		update credit_line_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from credit_line_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from credit_line_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+</mapper>

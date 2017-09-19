@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.NonNormalCustInfoDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.petitcredit.base.pushmsg.model.NonNormalCustInfo"
+		id="tableMapToModel">
+		<id column="id" property="ID" />
+		<result column="non_normal_uuid" property="NON_NORMAL_UUID" />
+		<result column="batch_no" property="BATCH_NO" />
+		<result column="data_type" property="DATA_TYPE" />
+		<result column="record_count" property="RECORD_COUNT" />
+		<result column="abnormal_info" property="ABNORMAL_INFO" />
+		<result column="report_type" property="REPORT_TYPE" />
+		<result column="org_code" property="ORG_CODE" />
+		<result column="customer_type" property="CUSTOMER_TYPE" />
+		<result column="customer_name" property="CUSTOMER_NAME" />
+		<result column="certificate_type" property="CERTIFICATE_TYPE" />
+		<result column="certificate_no" property="CERTIFICATE_NO" />
+		<result column="reason" property="REASON" />
+		<result column="industry" property="INDUSTRY" />
+		<result column="zone" property="ZONE" />
+		<result column="start_date" property="START_DATE" />
+		<result column="end_date" property="END_DATE" />
+		<result column="remark" property="REMARK" />
+		<result column="reserved_field1" property="RESERVED_FIELD1" />
+		<result column="reserved_field2" property="RESERVED_FIELD2" />
+		<result column="reserved_field3" property="RESERVED_FIELD3" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,non_normal_uuid,batch_no,data_type,record_count,abnormal_info,report_type,org_code,customer_type,customer_name,certificate_type,certificate_no,reason,industry,zone,start_date,end_date,remark,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{ID},#{NON_NORMAL_UUID},#{BATCH_NO},#{DATA_TYPE},#{RECORD_COUNT},#{ABNORMAL_INFO},#{REPORT_TYPE},#{ORG_CODE},#{CUSTOMER_TYPE},#{CUSTOMER_NAME},#{CERTIFICATE_TYPE},#{CERTIFICATE_NO},#{REASON},#{INDUSTRY},#{ZONE},#{START_DATE},#{END_DATE},#{REMARK},#{RESERVED_FIELD1},#{RESERVED_FIELD2},#{RESERVED_FIELD3}
+		</trim>
+	</sql>
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="NON_NORMAL_UUID != null and NON_NORMAL_UUID != '' ">
+				non_normal_uuid = #{NON_NORMAL_UUID},
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				batch_no = #{BATCH_NO},
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				data_type = #{DATA_TYPE},
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				record_count = #{RECORD_COUNT},
+			</if>
+			<if test="ABNORMAL_INFO != null and ABNORMAL_INFO != '' ">
+				abnormal_info = #{ABNORMAL_INFO},
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				report_type = #{REPORT_TYPE},
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				org_code = #{ORG_CODE},
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				customer_type = #{CUSTOMER_TYPE},
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				customer_name = #{CUSTOMER_NAME},
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				certificate_type = #{CERTIFICATE_TYPE},
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				certificate_no = #{CERTIFICATE_NO},
+			</if>
+			<if test="REASON != null and REASON != '' ">
+				reason = #{REASON},
+			</if>
+			<if test="ZONE != null and ZONE != '' ">
+				zone = #{ZONE},
+			</if>
+			<if test="START_DATE != null and START_DATE != '' ">
+				start_date = #{START_DATE},
+			</if>
+			<if test="END_DATE != null and END_DATE != '' ">
+				end_date = #{END_DATE},
+			</if>
+			<if test="REMARK != null and REMARK != '' ">
+				remark = #{REMARK},
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				reserved_field1 = #{RESERVED_FIELD1},
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				reserved_field2 = #{RESERVED_FIELD2},
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3},
+			</if>
+		</trim>
+	</sql>
+	<sql id="andOtherAll">
+		<trim suffix="" suffixOverrides=",">
+			<if test="NON_NORMAL_UUID != null and NON_NORMAL_UUID != '' ">
+				and non_normal_uuid = #{NON_NORMAL_UUID}
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				and batch_no = #{BATCH_NO}
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				and data_type = #{DATA_TYPE}
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				and record_count = #{RECORD_COUNT}
+			</if>
+			<if test="ABNORMAL_INFO != null and ABNORMAL_INFO != '' ">
+				and abnormal_info = #{ABNORMAL_INFO}
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				and report_type = #{REPORT_TYPE}
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				and org_code = #{ORG_CODE}
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				and customer_type = #{CUSTOMER_TYPE}
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				and customer_name = #{CUSTOMER_NAME}
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				and certificate_type = #{CERTIFICATE_TYPE}
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				and certificate_no = #{CERTIFICATE_NO}
+			</if>
+			<if test="REASON != null and REASON != '' ">
+				and reason = #{REASON}
+			</if>
+			<if test="ZONE != null and ZONE != '' ">
+				and zone = #{ZONE}
+			</if>
+			<if test="START_DATE != null and START_DATE != '' ">
+				and start_date = #{START_DATE}
+			</if>
+			<if test="END_DATE != null and END_DATE != '' ">
+				and end_date = #{END_DATE}
+			</if>
+			<if test="REMARK != null and REMARK != '' ">
+				and remark = #{REMARK}
+			</if>
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				and reserved_field1 = #{RESERVED_FIELD1}
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				and reserved_field2 = #{RESERVED_FIELD2}
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				and reserved_field3 = #{RESERVED_FIELD3}
+			</if>
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{ID}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.NonNormalCustInfo">
+		insert into non_normal_customer_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from non_normal_customer_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from non_normal_customer_info
+		<where>
+			non_normal_uuid = #{NON_NORMAL_UUID}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update non_normal_customer_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.NonNormalCustInfo">
+		update non_normal_customer_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from non_normal_customer_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from non_normal_customer_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+</mapper>

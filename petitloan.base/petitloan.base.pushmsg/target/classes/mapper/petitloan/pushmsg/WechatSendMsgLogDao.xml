@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.market.base.wechat.dao.WechatMsgLogDao">
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap type="com.huilian.market.base.wechat.model.WechatSendMsgLogModel"
+		id="tableMapToModel">
+		<id column="id" property="id" />
+		<result column="msgid" property="msgid" />
+		<result column="template_id" property="templateId" />
+		<result column="to_user" property="toUser" />
+		<result column="url" property="url" />
+		<result column="miniprogram" property="miniprogram" />
+		<result column="app_id" property="appId" />
+		<result column="page_path" property="pagePath" />
+		<result column="data" property="data" />
+		<result column="result_code" property="resultCode" />
+		<result column="result_code_desc" property="resultCodeDesc" />
+		<result column="send_time" property="sendTime" />
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,msgid,template_id,to_user,url,miniprogram,app_id,page_path,data,result_code,result_code_desc,send_time,
+		</trim>
+	</sql>
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{id},#{msgid},#{templateId},#{toUser},#{url},#{miniprogram},#{appId},#{pagePath},#{data},#{resultCode},#{resultCodeDesc},#{sendTime},
+		</trim>
+	</sql>
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="msgid != null and msgid != '' ">
+				msgid = #{msgid},
+			</if>
+			<if test="templateId != null and templateId != '' ">
+				template_id = #{templateId},
+			</if>
+			<if test="toUser != null and toUser != '' ">
+				to_user = #{toUser},
+			</if>
+			<if test="url != null and url != '' ">
+				url = #{url},
+			</if>
+			<if test="miniprogram != null and miniprogram != '' ">
+				miniprogram = #{miniprogram},
+			</if>
+			<if test="appId != null and appId != '' ">
+				app_id = #{appId},
+			</if>
+			<if test="pagePath != null and pagePath != '' ">
+				page_path = #{pagePath},
+			</if>
+			<if test="data != null and data != '' ">
+				data = #{data},
+			</if>
+			<if test="resultCode != null and resultCode != '' ">
+				result_code = #{resultCode},
+			</if>
+			<if test="resultCodeDesc != null and resultCodeDesc != '' ">
+				result_code_desc = #{resultCodeDesc},
+			</if>
+			<if test="sendTime != null and sendTime != '' ">
+				send_time = #{sendTime},
+			</if>
+
+		</trim>
+	</sql>
+	<sql id="andOtherAll">
+		<trim suffix="" suffixOverrides=",">
+			<if test="msgid != null and msgid != '' ">
+				and msgid = #{msgid}
+			</if>
+			<if test="templateId != null and templateId != '' ">
+				and template_id = #{templateId}
+			</if>
+			<if test="toUser != null and toUser != '' ">
+				and to_user = #{toUser}
+			</if>
+			<if test="url != null and url != '' ">
+				and url = #{url}
+			</if>
+			<if test="miniprogram != null and miniprogram != '' ">
+				and miniprogram = #{miniprogram}
+			</if>
+			<if test="appId != null and appId != '' ">
+				and app_id = #{appId}
+			</if>
+			<if test="pagePath != null and pagePath != '' ">
+				and page_path = #{pagePath}
+			</if>
+			<if test="data != null and data != '' ">
+				and data = #{data}
+			</if>
+			<if test="resultCode != null and resultCode != '' ">
+				and result_code = #{resultCode}
+			</if>
+			<if test="resultCodeDesc != null and resultCodeDesc != '' ">
+				and result_code_desc = #{resultCodeDesc}
+			</if>
+			<if test="sendTime != null and sendTime != '' ">
+				and send_time = #{sendTime}
+			</if>
+
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{id}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.market.base.wechat.model.WechatSendMsgLogModel">
+		insert into market_wechat_send_msg_status(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat_send_msg_status
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat_send_msg_status
+		<where>
+			app_id = #{appId}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update market_wechat_send_msg_status
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.market.base.wechat.model.WechatSendMsgLogModel">
+		update market_wechat_send_msg_status
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from market_wechat_send_msg_status
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from market_wechat_send_msg_status
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+</mapper>

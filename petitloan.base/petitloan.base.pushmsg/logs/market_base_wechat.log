@@ -1,0 +1,21 @@
+2017-09-14 17:36:17.151 [main] INFO  com.huilian.hlej.base.pool.DataBaseConnectionPool - datasource init.................
+2017-09-14 17:36:17.170 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - load jdbc.properties properties file from [file:/E:/workspace/petitloan.base.pushmsg/target/classes/jdbc.properties]
+2017-09-14 17:36:17.171 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - config load properties file url E:/workspace/petitloan.base.pushmsg/target/classes/
+2017-09-14 17:37:07.034 [main] INFO  com.huilian.hlej.base.pool.DataBaseConnectionPool - datasource init.................
+2017-09-14 17:37:07.038 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - load jdbc.properties properties file from [file:/E:/workspace/petitloan.base.pushmsg/target/classes/jdbc.properties]
+2017-09-14 17:37:07.038 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - config load properties file url E:/workspace/petitloan.base.pushmsg/target/classes/
+2017-09-14 17:37:08.117 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2017-09-14 17:37:08.139 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-14 17:37:53.071 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2017-09-14 17:37:53.076 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-09-14 17:54:24.291 [main] INFO  com.huilian.hlej.base.pool.DataBaseConnectionPool - datasource init.................
+2017-09-14 17:54:24.294 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - load jdbc.properties properties file from [file:/E:/workspace/petitloan.base.pushmsg/target/classes/jdbc.properties]
+2017-09-14 17:54:24.294 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - config load properties file url E:/workspace/petitloan.base.pushmsg/target/classes/
+2017-09-14 17:55:13.740 [main] INFO  com.huilian.hlej.base.pool.DataBaseConnectionPool - datasource init.................
+2017-09-14 17:55:13.744 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - load jdbc.properties properties file from [file:/E:/workspace/petitloan.base.pushmsg/target/classes/jdbc.properties]
+2017-09-14 17:55:13.744 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - config load properties file url E:/workspace/petitloan.base.pushmsg/target/classes/
+2017-09-14 17:55:39.420 [main] INFO  com.huilian.hlej.base.pool.DataBaseConnectionPool - datasource init.................
+2017-09-14 17:55:39.423 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - load jdbc.properties properties file from [file:/E:/workspace/petitloan.base.pushmsg/target/classes/jdbc.properties]
+2017-09-14 17:55:39.424 [main] INFO  com.huilian.hlej.base.utils.ConfigUtils - config load properties file url E:/workspace/petitloan.base.pushmsg/target/classes/
+2017-09-14 17:56:29.532 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2017-09-14 17:56:29.539 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.

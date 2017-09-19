@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 符号转义说明 &lt; < &gt; > &lt;&gt; <> &amp; & &apos; ' &quot; " <![CDATA[ 
+	这里写你的SQL或者符号 ]]> -->
+<mapper namespace="com.huilian.petitcredit.base.pushmsg.dao.LoanLaunchDao">
+
+	<!-- Result Map 数据库映射到实体类 -->
+	<resultMap id="tableMapToModel" type="com.huilian.petitcredit.base.pushmsg.model.LoanLaunch">
+		<id column="id" property="ID" />
+		<result column="loan_launch_uuid" property="LOAN_LAUNCH_UUID" />
+		<result column="batch_no" property="BATCH_NO" /><!--//批次号  -->
+		<result column="data_type" property="DATA_TYPE" />
+		<result column="record_count" property="RECORD_COUNT" />
+		<result column="issue_info" property="ISSUE_INFO" />
+		<result column="report_type" property="REPORT_TYPE" />
+		<result column="org_code" property="ORG_CODE" />
+		<result column="contract_no" property="CONTRACT_NO" />
+		<result column="due_bill_no" property="DUE_BILL_NO" />
+		<result column="customer_type" property="CUSTOMER_TYPE" />
+		<result column="customer_name" property="CUSTOMER_NAME" />
+		<result column="certificate_type" property="CERTIFICATE_TYPE" />
+		<result column="certificate_no" property="CERTIFICATE_NO" />
+		<result column="dd_amt" property="DD_AMT" />
+		<result column="loan_cate" property="LOAN_CATE" />
+		<result column="int_rate" property="INT_RATE" />
+		<result column="rate_type" property="RATE_TYPE" />
+		<result column="sign_date" property="SIGN_DATE" />
+		<result column="dd_date" property="DD_DATE" />
+		<result column="mature_date" property="MATURE_DATE" />
+		<result column="ext_start_date" property="EXT_START_DATE" />
+		<result column="ext_end_date" property="EXT_END_DATE" />
+		<result column="ext_outstanding" property="EXT_OUTSTANDING" />
+		<result column="zone" property="ZONE" />
+		<result column="guar_type" property="GUAR_TYPE" />
+		<result column="term" property="TERM" />
+		<result column="purpose" property="PURPOSE" />
+		<result column="loan_object" property="LOAN_OBJECT" />
+		<result column="loan_object_size" property="LOAN_OBJECT_SIZE" />
+		<result column="rate_calc_mode" property="RATE_CALC_MODE" />
+		<result column="industry" property="INDUSTRY" />
+		<result column="risk_level" property="RISK_LEVEL" />
+		<result column="issue_status" property="ISSUE_STATUS" />
+		<result column="hypopledge_info" property="HYPOPLEDGE_INFO" />
+		<result column="guar_contract_no" property="GUAR_CONTRACT_NO" />
+		<result column="warrant_no" property="WARRANT_NO" />
+		<result column="collateral_type" property="COLLATERAL_TYPE" />
+		<result column="hypopledge_amount" property="HYPOPLEDGE_AMOUNT" />
+		<result column="is_write_off" property="IS_WRITE_OFF" />
+		<result column="write_off_date" property="WRITE_OFF_DATE" />
+		<result column="remark" property="REMARK " />
+		<result column="fair_amt" property="FAIR_AMT" />
+		<result column="reserved_field1" property="RESERVED_FIELD1"/>
+		<result column="reserved_field2" property="RESERVED_FIELD2"/>
+		<result column="reserved_field3" property="RESERVED_FIELD3"/>
+	</resultMap>
+
+	<sql id="tbaleColumns">
+		<trim suffix="" suffixOverrides=",">
+			id,loan_launch_uuid,batch_no,data_type,record_count,issue_info,report_type,org_code,contract_no,due_bill_no,customer_type,customer_name,certificate_type,certificate_no,dd_amt,loan_cate,int_rate,pri_plty_rate,rate_type,sign_date,dd_date,mature_date,ext_start_date,ext_end_date,ext_outstanding,zone,guar_type,term,purpose,loan_object,loan_object_size,rate_calc_mode,repay_mode,industry,risk_level,issue_status,hypopledge_info,guar_contract_no,warrant_no,collateral_type,hypopledge_amount,is_write_off,write_off_date,remark,fair_amt,reserved_field1,reserved_field2,reserved_field3
+		</trim>
+	</sql>
+
+	<sql id="insertParamsAll">
+		<trim suffix="" suffixOverrides=",">
+			#{ID},#{LOAN_LAUNCH_UUID},#{BATCH_NO},#{DATA_TYPE},#{RECORD_COUNT},#{ISSUE_INFO},#{REPORT_TYPE},#{ORG_CODE},#{CONTRACT_NO},#{DUE_BILL_NO},#{CUSTOMER_TYPE},#{CUSTOMER_NAME},#{CERTIFICATE_TYPE},#{CERTIFICATE_NO},#{DD_AMT},#{LOAN_CATE},#{INT_RATE},#{RATE_TYPE},#{SIGN_DATE},#{DD_DATE},#{MATURE_DATE},#{EXT_START_DATE},#{EXT_END_DATE},#{EXT_OUTSTANDING},#{ZONE},#{GUAR_TYPE},#{TERM},#{PURPOSE},#{LOAN_OBJECT},#{LOAN_OBJECT_SIZE},#{RATE_CALC_MODE},#{INDUSTRY},#{RISK_LEVEL},#{ISSUE_STATUS},#{HYPOPLEDGE_INFO},#{GUAR_CONTRACT_NO},#{WARRANT_NO},#{COLLATERAL_TYPE},#{HYPOPLEDGE_AMOUNT},#{IS_WRITE_OFF},#{WRITE_OFF_DATE},#{REMARK },#{FAIR_AMT},#{RESERVED_FIELD1},#{RESERVED_FIELD2},#{RESERVED_FIELD3}
+		</trim>
+	</sql>
+
+	<!-- updateParams 更新列 -->
+	<sql id="updateParams">
+		<trim suffix="" suffixOverrides=",">
+			<if test="LOAN_LAUNCH_UUID != null and LOAN_LAUNCH_UUID != '' ">
+				loan_launch_uuid = #{LOAN_LAUNCH_UUID},
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				batch_no = #{BATCH_NO},
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				data_type = #{DATA_TYPE},
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				record_count = #{RECORD_COUNT},
+			</if>
+			<if test="ISSUE_INFO != null and ISSUE_INFO != '' ">
+				issue_info = #{ISSUE_INFO},
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				report_type = #{REPORT_TYPE},
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				org_code = #{ORG_CODE},
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				contract_no = #{CONTRACT_NO},
+			</if>
+			<if test="DUE_BILL_NO != null and DUE_BILL_NO != '' ">
+				due_bill_no = #{DUE_BILL_NO},
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				customer_type = #{CUSTOMER_TYPE},
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				customer_name = #{CUSTOMER_NAME},
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				certificate_type = #{CERTIFICATE_TYPE},
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				certificate_no = #{CERTIFICATE_NO},
+			</if>
+			<if test="DD_AMT != null and DD_AMT != '' ">
+				dd_amt = #{DD_AMT},
+			</if>
+			<if test="LOAN_CATE != null and LOAN_CATE != '' ">
+				loan_cate = #{LOAN_CATE},
+			</if>
+			<if test="INT_RATE != null and INT_RATE != '' ">
+				int_rate = #{INT_RATE},
+			</if>
+			<if test="RATE_TYPE != null and RATE_TYPE != '' ">
+				rate_type = #{RATE_TYPE},
+			</if>
+			<if test="SIGN_DATE != null and SIGN_DATE != '' ">
+				sign_date = #{SIGN_DATE},
+			</if>
+			<if test="DD_DATE != null and DD_DATE != '' ">
+				dd_date = #{DD_DATE},
+			</if>
+			<if test="MATURE_DATE != null and MATURE_DATE != '' ">
+				mature_date = #{MATURE_DATE},
+			</if>
+			<if test="EXT_START_DATE != null and EXT_START_DATE != '' ">
+				ext_start_date = #{EXT_START_DATE},
+			</if>
+			<if test="EXT_END_DATE != null and EXT_END_DATE != '' ">
+				ext_end_date = #{EXT_END_DATE},
+			</if>
+			<if test="EXT_OUTSTANDING != null and EXT_OUTSTANDING != '' ">
+				ext_outstanding = #{EXT_OUTSTANDING},
+			</if>
+			<if test="ZONE != null and ZONE != '' ">
+				zone = #{ZONE},
+			</if>
+			<if test="GUAR_TYPE != null and GUAR_TYPE != '' ">
+				guar_type = #{GUAR_TYPE},
+			</if>
+			<if test="TERM != null and TERM != '' ">
+				term = #{TERM},
+			</if>
+			<if test="PURPOSE != null and PURPOSE != '' ">
+				purpose = #{PURPOSE},
+			</if>
+			<if test="LOAN_OBJECT != null and LOAN_OBJECT != '' ">
+				loan_object = #{LOAN_OBJECT},
+			</if>
+			<if test="LOAN_OBJECT_SIZE != null and LOAN_OBJECT_SIZE != '' ">
+				loan_object_size = #{LOAN_OBJECT_SIZE},
+			</if>
+			<if test="RATE_CALC_MODE != null and RATE_CALC_MODE != '' ">
+				rate_calc_mode = #{RATE_CALC_MODE},
+			</if>
+			<if test="INDUSTRY != null and INDUSTRY != '' ">
+				industry = #{INDUSTRY},
+			</if>
+			<if test="RISK_LEVEL != null and RISK_LEVEL != '' ">
+				risk_level = #{RISK_LEVEL},
+			</if>
+			<if test="ISSUE_STATUS != null and ISSUE_STATUS != '' ">
+				issue_status = #{ISSUE_STATUS},
+			</if>
+			<if test="HYPOPLEDGE_INFO != null and HYPOPLEDGE_INFO != '' ">
+				hypopledge_info = #{HYPOPLEDGE_INFO},
+			</if>
+			<if test="GUAR_CONTRACT_NO != null and GUAR_CONTRACT_NO != '' ">
+				guar_contract_no = #{GUAR_CONTRACT_NO},
+			</if>
+			<if test="WARRANT_NO != null and WARRANT_NO != '' ">
+				warrant_no = #{WARRANT_NO},
+			</if>
+			<if test="COLLATERAL_TYPE != null and COLLATERAL_TYPE != '' ">
+				collateral_type = #{COLLATERAL_TYPE},
+			</if>
+			<if test="HYPOPLEDGE_AMOUNT != null and HYPOPLEDGE_AMOUNT != '' ">
+				hypopledge_amount = #{HYPOPLEDGE_AMOUNT},
+			</if>
+			<if test="IS_WRITE_OFF != null and IS_WRITE_OFF != '' ">
+				is_write_off = #{IS_WRITE_OFF},
+			</if>
+			<if test="WRITE_OFF_DATE != null and WRITE_OFF_DATE != '' ">
+				write_off_date = #{WRITE_OFF_DATE},
+			</if>
+			<if test="REMARK  != null and REMARK  != '' ">
+				remark = #{REMARK },
+			</if>
+			<if test="FAIR_AMT != null and FAIR_AMT != '' ">
+				fair_amt = #{FAIR_AMT},
+			</if>
+
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				reserved_field1 = #{RESERVED_FIELD1},
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				reserved_field2 = #{RESERVED_FIELD2},
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				reserved_field3 = #{RESERVED_FIELD3},
+			</if>
+		</trim>
+	</sql>
+	<!-- 查询条件 包含所有 -->
+	<sql id="andOtherAll">
+		<trim suffixOverrides=",">
+			<if test="LOAN_LAUNCH_UUID != null and LOAN_LAUNCH_UUID != '' ">
+				and loan_launch_uuid = #{LOAN_LAUNCH_UUID}
+			</if>
+			<if test="BATCH_NO != null and BATCH_NO != '' ">
+				and batch_no = #{BATCH_NO}
+			</if>
+			<if test="DATA_TYPE != null and DATA_TYPE != '' ">
+				and data_type = #{DATA_TYPE}
+			</if>
+			<if test="RECORD_COUNT != null and RECORD_COUNT != '' ">
+				and record_count = #{RECORD_COUNT}
+			</if>
+			<if test="ISSUE_INFO != null and ISSUE_INFO != '' ">
+				and issue_info = #{ISSUE_INFO}
+			</if>
+			<if test="REPORT_TYPE != null and REPORT_TYPE != '' ">
+				and report_type = #{REPORT_TYPE}
+			</if>
+			<if test="ORG_CODE != null and ORG_CODE != '' ">
+				and org_code = #{ORG_CODE}
+			</if>
+			<if test="CONTRACT_NO != null and CONTRACT_NO != '' ">
+				and contract_no = #{CONTRACT_NO}
+			</if>
+			<if test="DUE_BILL_NO != null and DUE_BILL_NO != '' ">
+				and due_bill_no = #{DUE_BILL_NO}
+			</if>
+			<if test="CUSTOMER_TYPE != null and CUSTOMER_TYPE != '' ">
+				and customer_type = #{CUSTOMER_TYPE}
+			</if>
+			<if test="CUSTOMER_NAME != null and CUSTOMER_NAME != '' ">
+				and customer_name = #{CUSTOMER_NAME}
+			</if>
+			<if test="CERTIFICATE_TYPE != null and CERTIFICATE_TYPE != '' ">
+				and certificate_type = #{CERTIFICATE_TYPE}
+			</if>
+			<if test="CERTIFICATE_NO != null and CERTIFICATE_NO != '' ">
+				and certificate_no = #{CERTIFICATE_NO}
+			</if>
+			<if test="DD_AMT != null and DD_AMT != '' ">
+				and dd_amt = #{DD_AMT}
+			</if>
+			<if test="LOAN_CATE != null and LOAN_CATE != '' ">
+				and loan_cate = #{LOAN_CATE}
+			</if>
+			<if test="INT_RATE != null and INT_RATE != '' ">
+				and int_rate = #{INT_RATE}
+			</if>
+			<if test="RATE_TYPE != null and RATE_TYPE != '' ">
+			    and rate_type = #{RATE_TYPE}
+			</if>
+			<if test="SIGN_DATE != null and SIGN_DATE != '' ">
+				and sign_date = #{SIGN_DATE}
+			</if>
+			<if test="DD_DATE != null and DD_DATE != '' ">
+				and dd_date = #{DD_DATE}
+			</if>
+			<if test="MATURE_DATE != null and MATURE_DATE != '' ">
+				and mature_date = #{MATURE_DATE}
+			</if>
+			<if test="EXT_START_DATE != null and EXT_START_DATE != '' ">
+				and ext_start_date = #{EXT_START_DATE}
+			</if>
+			<if test="EXT_END_DATE != null and EXT_END_DATE != '' ">
+				and ext_end_date = #{EXT_END_DATE}
+			</if>
+			<if test="EXT_OUTSTANDING != null and EXT_OUTSTANDING != '' ">
+				and ext_outstanding = #{EXT_OUTSTANDING}
+			</if>
+			<if test="ZONE != null and ZONE != '' ">
+				and zone = #{ZONE}
+			</if>
+			<if test="GUAR_TYPE != null and GUAR_TYPE != '' ">
+				and guar_type = #{GUAR_TYPE}
+			</if>
+			<if test="TERM != null and TERM != '' ">
+				and term = #{TERM}
+			</if>
+			<if test="PURPOSE != null and PURPOSE != '' ">
+				and purpose = #{PURPOSE}
+			</if>
+			<if test="LOAN_OBJECT != null and LOAN_OBJECT != '' ">
+				and loan_object = #{LOAN_OBJECT}
+			</if>
+			<if test="LOAN_OBJECT_SIZE != null and LOAN_OBJECT_SIZE != '' ">
+				and loan_object_size = #{LOAN_OBJECT_SIZE}
+			</if>
+			<if test="RATE_CALC_MODE != null and RATE_CALC_MODE != '' ">
+				and rate_calc_mode = #{RATE_CALC_MODE}
+			</if>
+			<if test="INDUSTRY != null and INDUSTRY != '' ">
+				and industry = #{INDUSTRY}
+			</if>
+			<if test="RISK_LEVEL != null and RISK_LEVEL != '' ">
+				and risk_level = #{RISK_LEVEL}
+			</if>
+			<if test="ISSUE_STATUS != null and ISSUE_STATUS != '' ">
+				and issue_status = #{ISSUE_STATUS}
+			</if>
+			<if test="HYPOPLEDGE_INFO != null and HYPOPLEDGE_INFO != '' ">
+				and hypopledge_info = #{HYPOPLEDGE_INFO}
+			</if>
+			<if test="GUAR_CONTRACT_NO != null and GUAR_CONTRACT_NO != '' ">
+				and guar_contract_no = #{GUAR_CONTRACT_NO}
+			</if>
+			<if test="WARRANT_NO != null and WARRANT_NO != '' ">
+				and warrant_no = #{WARRANT_NO}
+			</if>
+			<if test="COLLATERAL_TYPE != null and COLLATERAL_TYPE != '' ">
+				and collateral_type = #{COLLATERAL_TYPE}
+			</if>
+			<if test="HYPOPLEDGE_AMOUNT != null and HYPOPLEDGE_AMOUNT != '' ">
+				and hypopledge_amount = #{HYPOPLEDGE_AMOUNT}
+			</if>
+			<if test="IS_WRITE_OFF != null and IS_WRITE_OFF != '' ">
+				and is_write_off = #{IS_WRITE_OFF}
+			</if>
+			<if test="WRITE_OFF_DATE != null and WRITE_OFF_DATE != '' ">
+				and write_off_date = #{WRITE_OFF_DATE}
+			</if>
+			<if test="REMARK  != null and REMARK  != '' ">
+				and remark = #{REMARK }
+			</if>
+			<if test="FAIR_AMT != null and FAIR_AMT != '' ">
+				and fair_amt = #{FAIR_AMT}
+			</if>
+			
+			<if test="RESERVED_FIELD1 != null and RESERVED_FIELD1 != '' ">
+				and reserved_field1 = #{RESERVED_FIELD1}
+			</if>
+			<if test="RESERVED_FIELD2 != null and RESERVED_FIELD2 != '' ">
+				and reserved_field2 = #{RESERVED_FIELD2}
+			</if>
+			<if test="RESERVED_FIELD3 != null and RESERVED_FIELD3 != '' ">
+				and reserved_field3 = #{RESERVED_FIELD3}
+			</if>
+		</trim>
+	</sql>
+	<!-- columnKey 主键 列名称 ,视图获取不到主键 需要设置 -->
+	<sql id="columnKey">
+		and id=#{ID}
+	</sql>
+	<!-- 添加,插入记录 -->
+	<insert id="insert" parameterType="com.huilian.petitcredit.base.pushmsg.model.LoanLaunch">
+		insert into loan_launch_info(
+		<include refid="tbaleColumns" />
+		) values(
+		<include refid="insertParamsAll" />
+		);
+	</insert>
+	<!-- 查询,主键查询 -->
+	<select id="findById" resultMap="tableMapToModel" parameterType="java.lang.Object">
+		select
+		<include refid="tbaleColumns" />
+		from loan_launch_info
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</select>
+	<!-- 查询,主键查询 -->
+	<select id="findByNum" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from loan_launch_info
+		<where>
+			loan_launch_uuid = #{LOAN_LAUNCH_UUID}
+		</where>
+	</select>
+	<update id="updateByMap" parameterType="java.util.Map">
+		update loan_launch_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<update id="update" parameterType="com.huilian.petitcredit.base.pushmsg.model.LoanLaunch">
+		update loan_launch_info
+		<set>
+			<include refid="updateParams" />
+		</set>
+		<where>
+			<include refid="columnKey" />
+		</where>
+	</update>
+
+	<!-- 查询,参数查询,Map分页 -->
+	<select id="findByCondition" resultMap="tableMapToModel"
+		parameterType="java.util.Map">
+		select
+		<include refid="tbaleColumns" />
+		from loan_launch_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.queryCondition}
+			${pageUtil.andCondition}
+		</where>
+		${pageUtil.orderByCondition}
+		${pageUtil.limit}
+	</select>
+	<!-- 查询,总行数,Map分页 -->
+	<select id="getCountByCondition" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select count(1) from loan_launch_info
+		<where>
+			<include refid="andOtherAll" />
+			${pageUtil.andCondition}
+			${pageUtil.orderByCondition}
+		</where>
+	</select>
+
+</mapper>   

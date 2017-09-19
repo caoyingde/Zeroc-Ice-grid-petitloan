@@ -1,0 +1,57 @@
+﻿<icegrid>
+	<application name="petitloan_Pushmsg_System">
+		<!--<variable name="platform_dir" value="/usr/local/hlej/platform" />
+		<variable name="variable_split" value=":" />
+		 windows配置-->
+		<variable name="platform_dir" value="D:/hlej/platform" />
+		<variable name="variable_split" value=";"/> 
+		
+		<properties id="MultiThreaded">
+
+			<property name="Ice.ThreadPool.Server.Size" value="50" />
+			<property name="Ice.ThreadPool.Server.SizeWarn" value="150" />
+			<property name="Ice.ThreadPool.Server.SizeMax" value="200" />
+			<property name="IceBox.InheritProperties" value="1" />
+			<property name="Ice.Override.ConnectTimeout" value="5000" />
+			<property name="Ice.Override.Timeout" value="10000" />
+			<property name="Ice.Default.LocatorCacheTimeout" value="300" />
+			<property name="Ice.BackgroundLocatorCacheUpdates" value="1" />
+			<property name="Ice.ACM.Client" value="60" />
+		</properties>
+
+		<server-template id="Base_Pushmsg_ServerTemplate">
+			<parameter name="xmx" />
+			<parameter name="permSize" />
+			<parameter name="debugport" />
+			<parameter name="module" />
+			<parameter name="project" />
+			<icebox id="${project}_PushmsgService" exe="java" activation="always">
+				<properties>
+					<properties refid="MultiThreaded" />
+				</properties>
+				<option>-Xms${xmx}</option>
+				<option>-Xmx${xmx}</option>
+				<option>-XX:PermSize=${permSize}</option>
+				<option>-XX:MaxPermSize=${permSize}</option>
+				<option>-Xdebug</option>
+				<option>-Xnoagent</option>
+				<option>-Djava.compiler=NONE</option>
+				<option>-Xrunjdwp:transport=dt_socket,address=${debugport},server=y,suspend=n</option>
+				<option>IceBox.Server</option>
+				<env>CLASSPATH=${platform_dir}/${project}/${module}/${module}_server/lib/*${variable_split}${platform_dir}/${project}/${module}/${module}_server/conf${variable_split}$CLASSPATH${variable_split}</env>
+				<service name="BasePushmsgHandler" entry="com.huilian.petitloan.base.wechPushmsgdler.PushmsgService">
+					<adapter name="BasePushmsgHandler" id="BasePushmsgHandler"
+						endpoints="default" replica-group="BasePushmsgHandlerRep"/>
+				</service>
+			</icebox>
+		</server-template>
+		
+		<replica-group id="BasePushmsgHandlerRep">
+			<load-balancing type="round-robin" n-replicas="0" />
+			<object identity="BasePushmsgHandler" type="::com::huilian::petitloan::base::pushmsg::handler::PushmsgService" />
+		</replica-group>
+		<node name="node1">
+			<server-instance template="Base_Pushmsg_ServerTemplate" project="petitloan" xmx="150M" permSize="50M" debugport="7041" module="base.pushmsg" />
+		</node>
+	</application>
+</icegrid>
