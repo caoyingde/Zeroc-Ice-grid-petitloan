@@ -152,7 +152,7 @@ application add app.xml
 五、代码
 定义slice：
 
-[["java:package:com.asto"]]
+[["java.package:com.asto"]]
 module filesystem{
 	interface Node{
 		string name();
